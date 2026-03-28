@@ -48,6 +48,8 @@ dependencies {
 
     compileOnly("org.projectlombok:lombok:1.18.36")
     annotationProcessor("org.projectlombok:lombok:1.18.36")
+
+    implementation("org.springframework:spring-context:6.2.2")
 }
 
 tasks.withType<Test> {

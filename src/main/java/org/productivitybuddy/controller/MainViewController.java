@@ -5,7 +5,9 @@ import javafx.fxml.FXML;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import javafx.util.Duration;
+import org.springframework.stereotype.Component;
 
+@Component
 public class MainViewController {
     @FXML
     private Region toggleThumb;

@@ -7,6 +7,9 @@ module org.productivitybuddy.productivitybuddy {
     requires org.kordamp.ikonli.javafx;
     requires org.kordamp.bootstrapfx.core;
     requires static lombok;
+    requires spring.context;
+    requires spring.beans;
+    requires spring.core;
 
     opens org.productivitybuddy to javafx.fxml;
     exports org.productivitybuddy;
