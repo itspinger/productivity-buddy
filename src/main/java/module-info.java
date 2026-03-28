@@ -10,6 +10,7 @@ module org.productivitybuddy.productivitybuddy {
     requires spring.context;
     requires spring.beans;
     requires spring.core;
+    requires com.google.gson;
 
     opens org.productivitybuddy to javafx.fxml;
     exports org.productivitybuddy;

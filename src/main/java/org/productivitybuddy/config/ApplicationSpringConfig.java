@@ -1,5 +1,7 @@
 package org.productivitybuddy.config;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import java.time.LocalTime;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
@@ -18,4 +20,8 @@ public class ApplicationSpringConfig {
         return service;
     }
 
+    @Bean
+    public Gson gsonProvider() {
+        return new GsonBuilder().setPrettyPrinting().create();
+    }
 }

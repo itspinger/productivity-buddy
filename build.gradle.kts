@@ -50,6 +50,8 @@ dependencies {
     annotationProcessor("org.projectlombok:lombok:1.18.36")
 
     implementation("org.springframework:spring-context:6.2.2")
+    implementation("com.google.code.gson:gson:2.11.0")
+    implementation("com.github.oshi:oshi-core:6.6.5")
 }
 
 tasks.withType<Test> {
