@@ -1,0 +1,17 @@
+.toggle-switch {
+    -fx-background-color: #c4c4c4;
+    -fx-background-radius: 12;
+    -fx-cursor: hand;
+}
+
+.toggle-switch-on {
+    -fx-background-color: #7c6cbf;
+    -fx-background-radius: 12;
+    -fx-cursor: hand;
+}
+
+.toggle-thumb {
+    -fx-background-color: white;
+    -fx-background-radius: 10;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.2), 4, 0, 0, 1);
+}
