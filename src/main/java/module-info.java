@@ -6,6 +6,7 @@ module org.productivitybuddy.productivitybuddy {
     requires com.dlsc.formsfx;
     requires org.kordamp.ikonli.javafx;
     requires org.kordamp.bootstrapfx.core;
+    requires static lombok;
 
     opens org.productivitybuddy to javafx.fxml;
     exports org.productivitybuddy;
