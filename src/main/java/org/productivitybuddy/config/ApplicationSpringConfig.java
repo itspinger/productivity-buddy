@@ -8,6 +8,7 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.convert.ConversionService;
 import org.springframework.core.convert.support.DefaultConversionService;
+import oshi.SystemInfo;
 
 @Configuration
 @ComponentScan(basePackages = "org.productivitybuddy")
@@ -23,5 +24,10 @@ public class ApplicationSpringConfig {
     @Bean
     public Gson gsonProvider() {
         return new GsonBuilder().setPrettyPrinting().create();
+    }
+
+    @Bean
+    public SystemInfo systemInfo() {
+        return new SystemInfo();
     }
 }

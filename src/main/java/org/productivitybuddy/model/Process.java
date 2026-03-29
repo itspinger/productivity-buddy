@@ -14,6 +14,13 @@ public class Process {
     private boolean trackingFrozen;
     private long totalTimeSeconds;
 
+    private transient ProcessInfo processInfo;
+
+    public Process(String originalName) {
+        this.originalName = originalName;
+        this.processCategory = ProcessCategory.UNCATEGORIZED;
+    }
+
     public String getDisplayName() {
         if (this.aliasName != null && !this.aliasName.isBlank()) {
             return this.aliasName;

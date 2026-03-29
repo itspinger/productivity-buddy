@@ -11,6 +11,10 @@ module org.productivitybuddy.productivitybuddy {
     requires spring.beans;
     requires spring.core;
     requires com.google.gson;
+    requires jakarta.annotation;
+    requires com.github.oshi;
+
+    requires org.slf4j;
 
     opens org.productivitybuddy to javafx.fxml;
     exports org.productivitybuddy;

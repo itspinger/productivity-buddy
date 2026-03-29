@@ -9,7 +9,7 @@ import lombok.Setter;
 @AllArgsConstructor
 public class ProcessInfo {
     private long pid;
+    private long startTime;
     private double cpuUsage;
     private long ramUsageKb;
-
 }
