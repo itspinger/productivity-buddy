@@ -59,11 +59,19 @@ public class ProcessScannerServiceImpl implements ProcessScannerService {
 
     @Override
     public void scan() {
-        final List<ProcessHandle> handles = ProcessHandle.allProcesses().toList();
+        final List<OSProcess> processes = this.systemInfo.getOperatingSystem().getProcesses(null, null, 0);
         final Set<Long> activePids = ConcurrentHashMap.newKeySet();
 
         final long scanIntervalSeconds = this.config.getMonitorInterval() / 1000;
-        this.forkJoinPool.invoke(new ProcessScanTask(handles, 0, handles.size(), this.registry, activePids, this.systemInfo, scanIntervalSeconds, this.savedProcesses));
+        this.forkJoinPool.invoke(new ProcessScanTask(
+            processes,
+            0,
+            processes.size(),
+            this.registry,
+            activePids,
+            scanIntervalSeconds,
+            this.savedProcesses
+        ));
 
         this.registry.findAll().keySet()
             .stream()
@@ -76,22 +84,22 @@ public class ProcessScannerServiceImpl implements ProcessScannerService {
     private static class ProcessScanTask extends RecursiveAction {
         private static final int THRESHOLD = 10;
 
-        private final List<ProcessHandle> handles;
+        private final List<OSProcess> processes;
         private final int start;
         private final int end;
         private final ProcessRegistry registry;
         private final Set<Long> activePids;
-        private final SystemInfo systemInfo;
         private final long scanIntervalSeconds;
         private final Map<String, Process> savedProcesses;
 
-        private ProcessScanTask(List<ProcessHandle> handles, int start, int end, ProcessRegistry registry, Set<Long> activePids, SystemInfo systemInfo, long scanIntervalSeconds, Map<String, Process> savedProcesses) {
-            this.handles = handles;
+        private ProcessScanTask(List<OSProcess> processes, int start, int end, ProcessRegistry registry,
+                                Set<Long> activePids,
+                                long scanIntervalSeconds, Map<String, Process> savedProcesses) {
+            this.processes = processes;
             this.start = start;
             this.end = end;
             this.registry = registry;
             this.activePids = activePids;
-            this.systemInfo = systemInfo;
             this.scanIntervalSeconds = scanIntervalSeconds;
             this.savedProcesses = savedProcesses;
         }
@@ -105,8 +113,12 @@ public class ProcessScannerServiceImpl implements ProcessScannerService {
 
             final int mid = this.start + (this.end - this.start) / 2;
 
-            final ProcessScanTask left = new ProcessScanTask(this.handles, this.start, mid, this.registry, this.activePids, this.systemInfo, this.scanIntervalSeconds, this.savedProcesses);
-            final ProcessScanTask right = new ProcessScanTask(this.handles, mid, this.end, this.registry, this.activePids, this.systemInfo, this.scanIntervalSeconds, this.savedProcesses);
+            final ProcessScanTask left = new ProcessScanTask(
+                this.processes, this.start, mid, this.registry, this.activePids,
+                this.scanIntervalSeconds, this.savedProcesses);
+            final ProcessScanTask right = new ProcessScanTask(
+                this.processes, mid, this.end, this.registry, this.activePids,
+                this.scanIntervalSeconds, this.savedProcesses);
 
             left.fork();
             right.compute();
@@ -115,25 +127,16 @@ public class ProcessScannerServiceImpl implements ProcessScannerService {
 
         private void computeChunk() {
             for (int i = this.start; i < this.end; i++) {
-                final ProcessHandle handle = this.handles.get(i);
-                if (!handle.isAlive()) {
+                final OSProcess osProcess = this.processes.get(i);
+                if (osProcess == null) {
                     continue;
                 }
 
-                final long pid = handle.pid();
-                final ProcessHandle.Info handleInfo = handle.info();
-
-                final String name = handleInfo.command()
-                    .map(cmd -> Paths.get(cmd).getFileName().toString())
-                    .orElse("unknown");
-
-                final long startTime = handleInfo.startInstant()
-                    .map(instant -> instant.toEpochMilli())
-                    .orElse(0L);
-
-                final OSProcess osProcess = this.systemInfo.getOperatingSystem().getProcess((int) pid);
-                final double cpu = osProcess != null ? osProcess.getProcessCpuLoadCumulative() * 100.0 : 0.0;
-                final long ramUsageKb = osProcess != null ? osProcess.getResidentSetSize() / 1024 : 0L;
+                final long pid = osProcess.getProcessID();
+                final String name = resolveProcessName(osProcess);
+                final long startTime = osProcess.getStartTime();
+                final double cpu = osProcess.getProcessCpuLoadCumulative() * 100.0;
+                final long ramUsageKb = osProcess.getResidentSetSize() / 1024;
 
                 this.activePids.add(pid);
 
@@ -173,6 +176,24 @@ public class ProcessScannerServiceImpl implements ProcessScannerService {
 
         private int chunkSize() {
             return this.end - this.start;
+        }
+
+        private static String resolveProcessName(OSProcess process) {
+            final String rawName = process.getName();
+            if (rawName != null && !rawName.isBlank()) {
+                return rawName;
+            }
+
+            final String path = process.getPath();
+            if (path != null && !path.isBlank()) {
+                try {
+                    return Paths.get(path).getFileName().toString();
+                } catch (Exception ignored) {
+                    return path;
+                }
+            }
+
+            return "unknown";
         }
     }
 }
