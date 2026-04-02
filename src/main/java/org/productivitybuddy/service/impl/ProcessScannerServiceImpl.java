@@ -6,7 +6,6 @@ import java.util.Map;
 import java.util.Optional;
 import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
-import java.util.concurrent.Executors;
 import java.util.concurrent.ForkJoinPool;
 import java.util.concurrent.RecursiveAction;
 import java.util.concurrent.ScheduledExecutorService;
@@ -18,6 +17,7 @@ import org.productivitybuddy.model.ProcessInfo;
 import org.productivitybuddy.registry.ProcessRegistry;
 import org.productivitybuddy.service.ProcessScannerService;
 import org.productivitybuddy.store.ProcessStore;
+import org.productivitybuddy.thread.ThreadFactory;
 import org.springframework.stereotype.Component;
 import oshi.SystemInfo;
 import oshi.software.os.OSProcess;
@@ -29,7 +29,7 @@ public class ProcessScannerServiceImpl implements ProcessScannerService {
     private final ProcessStore processStore;
     private final ApplicationConfig config;
     private final SystemInfo systemInfo;
-    private final ScheduledExecutorService scheduler = Executors.newSingleThreadScheduledExecutor();
+    private final ScheduledExecutorService scheduler = ThreadFactory.newSingleThreadScheduler("process-scanner-thread");
     private final ForkJoinPool forkJoinPool = new ForkJoinPool();
     private final Map<String, Process> savedProcesses = new ConcurrentHashMap<>();
 
