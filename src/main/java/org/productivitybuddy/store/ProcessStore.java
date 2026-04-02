@@ -1,6 +1,7 @@
 package org.productivitybuddy.store;
 
 import java.util.List;
+import org.productivitybuddy.model.Process;
 
 /**
  * Persists and retrieves {@link Process} records across application sessions.

@@ -14,6 +14,7 @@ import java.util.List;
 import java.util.stream.StreamSupport;
 import lombok.extern.slf4j.Slf4j;
 import org.productivitybuddy.config.ApplicationConfig;
+import org.productivitybuddy.model.Process;
 import org.productivitybuddy.store.ProcessStore;
 import org.springframework.stereotype.Component;
 

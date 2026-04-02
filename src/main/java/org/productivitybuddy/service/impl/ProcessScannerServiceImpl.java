@@ -2,6 +2,7 @@ package org.productivitybuddy.service.impl;
 
 import java.nio.file.Paths;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
@@ -16,6 +17,7 @@ import org.productivitybuddy.model.Process;
 import org.productivitybuddy.model.ProcessInfo;
 import org.productivitybuddy.registry.ProcessRegistry;
 import org.productivitybuddy.service.ProcessScannerService;
+import org.productivitybuddy.store.ProcessStore;
 import org.springframework.stereotype.Component;
 import oshi.SystemInfo;
 import oshi.software.os.OSProcess;
@@ -24,19 +26,26 @@ import oshi.software.os.OSProcess;
 @Slf4j
 public class ProcessScannerServiceImpl implements ProcessScannerService {
     private final ProcessRegistry registry;
+    private final ProcessStore processStore;
     private final ApplicationConfig config;
     private final SystemInfo systemInfo;
     private final ScheduledExecutorService scheduler = Executors.newSingleThreadScheduledExecutor();
     private final ForkJoinPool forkJoinPool = new ForkJoinPool();
+    private final Map<String, Process> savedProcesses = new ConcurrentHashMap<>();
 
-    public ProcessScannerServiceImpl(ProcessRegistry registry, ApplicationConfig config, SystemInfo systemInfo) {
+    public ProcessScannerServiceImpl(ProcessRegistry registry, ProcessStore processStore, ApplicationConfig config, SystemInfo systemInfo) {
         this.registry = registry;
+        this.processStore = processStore;
         this.config = config;
         this.systemInfo = systemInfo;
     }
 
     @Override
     public void start() {
+        final List<Process> loaded = this.processStore.loadAll();
+        loaded.forEach(p -> this.savedProcesses.put(p.getOriginalName(), p));
+        log.info("Loaded {} saved processes from store", loaded.size());
+
         this.scheduler.scheduleAtFixedRate(this::scan, 0, this.config.getMonitorInterval(), TimeUnit.MILLISECONDS);
         log.info("Process scanner started with interval {}ms", this.config.getMonitorInterval());
     }
@@ -53,7 +62,8 @@ public class ProcessScannerServiceImpl implements ProcessScannerService {
         final List<ProcessHandle> handles = ProcessHandle.allProcesses().toList();
         final Set<Long> activePids = ConcurrentHashMap.newKeySet();
 
-        this.forkJoinPool.invoke(new ProcessScanTask(handles, 0, handles.size(), this.registry, activePids, this.systemInfo));
+        final long scanIntervalSeconds = this.config.getMonitorInterval() / 1000;
+        this.forkJoinPool.invoke(new ProcessScanTask(handles, 0, handles.size(), this.registry, activePids, this.systemInfo, scanIntervalSeconds, this.savedProcesses));
 
         this.registry.findAll().keySet()
             .stream()
@@ -72,14 +82,18 @@ public class ProcessScannerServiceImpl implements ProcessScannerService {
         private final ProcessRegistry registry;
         private final Set<Long> activePids;
         private final SystemInfo systemInfo;
+        private final long scanIntervalSeconds;
+        private final Map<String, Process> savedProcesses;
 
-        private ProcessScanTask(List<ProcessHandle> handles, int start, int end, ProcessRegistry registry, Set<Long> activePids, SystemInfo systemInfo) {
+        private ProcessScanTask(List<ProcessHandle> handles, int start, int end, ProcessRegistry registry, Set<Long> activePids, SystemInfo systemInfo, long scanIntervalSeconds, Map<String, Process> savedProcesses) {
             this.handles = handles;
             this.start = start;
             this.end = end;
             this.registry = registry;
             this.activePids = activePids;
             this.systemInfo = systemInfo;
+            this.scanIntervalSeconds = scanIntervalSeconds;
+            this.savedProcesses = savedProcesses;
         }
 
         @Override
@@ -91,8 +105,8 @@ public class ProcessScannerServiceImpl implements ProcessScannerService {
 
             final int mid = this.start + (this.end - this.start) / 2;
 
-            final ProcessScanTask left = new ProcessScanTask(this.handles, this.start, mid, this.registry, this.activePids, systemInfo);
-            final ProcessScanTask right = new ProcessScanTask(this.handles, mid, this.end, this.registry, this.activePids, systemInfo);
+            final ProcessScanTask left = new ProcessScanTask(this.handles, this.start, mid, this.registry, this.activePids, this.systemInfo, this.scanIntervalSeconds, this.savedProcesses);
+            final ProcessScanTask right = new ProcessScanTask(this.handles, mid, this.end, this.registry, this.activePids, this.systemInfo, this.scanIntervalSeconds, this.savedProcesses);
 
             left.fork();
             right.compute();
@@ -133,7 +147,24 @@ public class ProcessScannerServiceImpl implements ProcessScannerService {
                 }
 
                 final Process process = this.registry.findByPid(pid)
-                    .orElseGet(() -> new Process(name));
+                    .orElseGet(() -> {
+                        final Process newProcess = new Process(name);
+                        final Process saved = this.savedProcesses.get(name);
+                        if (saved != null) {
+                            newProcess.setAliasName(saved.getAliasName());
+                            newProcess.setProcessCategory(saved.getProcessCategory());
+                            newProcess.setTrackingFrozen(saved.isTrackingFrozen());
+                            newProcess.setTotalTimeSeconds(saved.getTotalTimeSeconds());
+                        }
+                        return newProcess;
+                    });
+
+                // TODO: Time accumulation uses fixed scan interval, so freeze/unfreeze within
+                //  a single interval is not precise. For better accuracy, we can track the last scan
+                //  timestamp per process and compute the actual elapsed delta.
+                if (!process.isTrackingFrozen() && process.getProcessInfo() != null) {
+                    process.setTotalTimeSeconds(process.getTotalTimeSeconds() + this.scanIntervalSeconds);
+                }
 
                 process.setProcessInfo(new ProcessInfo(pid, startTime, cpu, ramUsageKb));
                 this.registry.upsert(process);
