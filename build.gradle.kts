@@ -3,7 +3,6 @@ plugins {
     application
     id("org.javamodularity.moduleplugin") version "1.8.15"
     id("org.openjfx.javafxplugin") version "0.0.13"
-    id("org.beryx.jlink") version "2.25.0"
 }
 
 group = "org.productivitybuddy"
@@ -27,7 +26,7 @@ tasks.withType<JavaCompile> {
 
 application {
     mainModule.set("org.productivitybuddy.productivitybuddy")
-    mainClass.set("org.productivitybuddy.productivitybuddy.HelloApplication")
+    mainClass.set("org.productivitybuddy.ProductivityBuddyLauncher")
 }
 
 javafx {
@@ -50,6 +49,8 @@ dependencies {
     compileOnly("org.projectlombok:lombok:1.18.36")
     annotationProcessor("org.projectlombok:lombok:1.18.36")
 
+    annotationProcessor("org.springframework:spring-context-indexer:6.2.2")
+
     implementation("org.springframework:spring-context:6.2.2")
     implementation("jakarta.annotation:jakarta.annotation-api:2.1.1")
     implementation("com.google.code.gson:gson:2.11.0")
@@ -63,10 +64,45 @@ tasks.withType<Test> {
     useJUnitPlatform()
 }
 
-jlink {
-    imageZip.set(layout.buildDirectory.file("/distributions/app-${javafx.platform.classifier}.zip"))
-    options.set(listOf("--strip-debug", "--compress", "2", "--no-header-files", "--no-man-pages"))
-    launcher {
-        name = "app"
+// Native packaging via jpackage (classpath mode, bundles JRE)
+tasks.register<Exec>("nativePackage") {
+    dependsOn("jar")
+    group = "distribution"
+    description = "Creates a native .dmg installer with bundled JRE via jpackage"
+
+    val jpackageBin = javaToolchains.launcherFor {
+        languageVersion = JavaLanguageVersion.of(21)
+    }.map { it.executablePath.asFile.parentFile.resolve("jpackage").absolutePath }
+
+    val appJar = tasks.named<Jar>("jar").flatMap { it.archiveFile }
+    val libsDir = layout.buildDirectory.dir("nativeLibs")
+    val outputDir = layout.buildDirectory.dir("nativePackage")
+
+    // Collect all runtime dependencies into a single directory
+    doFirst {
+        val dir = libsDir.get().asFile
+        dir.deleteRecursively()
+        dir.mkdirs()
+        configurations.named("runtimeClasspath").get().resolve().forEach { file ->
+            file.copyTo(File(dir, file.name), overwrite = true)
+        }
+        appJar.get().asFile.copyTo(File(dir, appJar.get().asFile.name), overwrite = true)
     }
+
+    val installerType = when {
+        org.gradle.internal.os.OperatingSystem.current().isMacOsX -> "dmg"
+        org.gradle.internal.os.OperatingSystem.current().isWindows -> "msi"
+        else -> "deb"
+    }
+
+    executable = jpackageBin.get()
+    args = listOf(
+        "--type", installerType,
+        "--name", "ProductivityBuddy",
+        "--app-version", "1.0.0",
+        "--input", libsDir.get().asFile.absolutePath,
+        "--main-jar", appJar.get().asFile.name,
+        "--main-class", "org.productivitybuddy.ProductivityBuddyLauncher",
+        "--dest", outputDir.get().asFile.absolutePath
+    )
 }

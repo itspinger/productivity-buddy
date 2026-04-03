@@ -17,14 +17,26 @@ module org.productivitybuddy.productivitybuddy {
 
     requires org.slf4j;
 
-    opens org.productivitybuddy to javafx.fxml;
+    opens org.productivitybuddy;
     exports org.productivitybuddy;
+
+    opens org.productivitybuddy.app;
     exports org.productivitybuddy.app;
-    opens org.productivitybuddy.app to javafx.fxml;
 
-    opens org.productivitybuddy.controller to javafx.fxml, spring.core, spring.beans, spring.context;
+    opens org.productivitybuddy.config;
+    opens org.productivitybuddy.model;
+    opens org.productivitybuddy.registry;
+    opens org.productivitybuddy.registry.impl;
+    opens org.productivitybuddy.lifecycle;
+    opens org.productivitybuddy.store;
+    opens org.productivitybuddy.store.impl;
+    opens org.productivitybuddy.service;
+    opens org.productivitybuddy.service.impl;
+    opens org.productivitybuddy.controller;
+    opens org.productivitybuddy.ui;
+    opens org.productivitybuddy.view;
+    opens org.productivitybuddy.thread;
+    opens org.productivitybuddy.util;
+
     exports org.productivitybuddy.controller;
-
-    opens org.productivitybuddy.service to spring.core, spring.beans, spring.context;
-    opens org.productivitybuddy.service.impl to spring.core, spring.beans, spring.context;
 }
