@@ -1,6 +1,7 @@
 package org.productivitybuddy.service.impl;
 
 import java.io.IOException;
+import java.nio.file.ClosedWatchServiceException;
 import java.nio.file.FileSystems;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -88,6 +89,9 @@ public class FileWatcherService implements Lifecycle {
                 }
 
                 key.reset();
+            } catch (ClosedWatchServiceException e) {
+                log.debug("Watch service closed, exiting watcher loop");
+                break;
             } catch (InterruptedException e) {
                 Thread.currentThread().interrupt();
                 break;

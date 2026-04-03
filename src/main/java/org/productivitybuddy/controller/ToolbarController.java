@@ -109,14 +109,6 @@ public class ToolbarController {
 
     @FXML
     private void onShutdown() {
-        this.fileExecutorService.submit(() -> {
-            final List<Process> processes = new ArrayList<>(this.registry.findAll().values());
-            this.processStore.saveAll(processes);
-        });
-
-        this.fileExecutorService.shutdown();
-        this.fileExecutorService.awaitTermination(10);
-
         Platform.exit();
     }
 
