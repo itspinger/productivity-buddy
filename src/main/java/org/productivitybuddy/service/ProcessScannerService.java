@@ -1,7 +1,10 @@
 package org.productivitybuddy.service;
 
+import java.util.List;
+import java.util.Map;
 import java.util.concurrent.ForkJoinPool;
 import org.productivitybuddy.lifecycle.Lifecycle;
+import org.productivitybuddy.model.Process;
 import org.productivitybuddy.registry.ProcessRegistry;
 
 /**
@@ -22,4 +25,25 @@ public interface ProcessScannerService extends Lifecycle {
      * Called automatically on each scheduled interval, but can also be invoked directly for testing.
      */
     void scan();
+
+    /**
+     * Returns the saved baseline currently loaded from persisted storage and keyed by
+     * original process name.
+     * <p>
+     * The returned map represents the historical state used to seed runtime metadata and
+     * to calculate display totals. Callers must treat the returned view as read-only.
+     *
+     * @return the saved baseline keyed by original process name
+     */
+    Map<String, Process> getSavedProcesses();
+
+    /**
+     * Replaces the in-memory saved baseline with the provided persisted process list.
+     * <p>
+     * Implementations should normalize the input into one entry per original process
+     * name and detach the stored values from caller-owned instances.
+     *
+     * @param processes the persisted processes that should become the new saved baseline
+     */
+    void replaceSavedProcesses(List<Process> processes);
 }

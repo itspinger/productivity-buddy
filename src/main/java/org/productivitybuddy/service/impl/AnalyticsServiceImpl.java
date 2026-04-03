@@ -2,10 +2,8 @@ package org.productivitybuddy.service.impl;
 
 import java.time.LocalTime;
 import java.util.Comparator;
-import java.util.EnumMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Optional;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
 import java.util.function.ToDoubleFunction;
@@ -18,6 +16,7 @@ import org.productivitybuddy.model.ProcessCategory;
 import org.productivitybuddy.model.ProcessInfo;
 import org.productivitybuddy.registry.ProcessRegistry;
 import org.productivitybuddy.service.AnalyticsService;
+import org.productivitybuddy.service.ProcessAggregationService;
 import org.productivitybuddy.thread.ThreadFactory;
 import org.springframework.stereotype.Component;
 
@@ -29,14 +28,16 @@ public class AnalyticsServiceImpl implements AnalyticsService {
     private final ProcessRegistry registry;
     private final SnapshotService snapshotService;
     private final ApplicationConfig config;
+    private final ProcessAggregationService processAggregationService;
     private final ScheduledExecutorService scheduler = ThreadFactory.newSingleThreadScheduler("analytics-thread");
 
     private volatile AnalyticsSummary latestSummary = AnalyticsSummary.empty();
 
-    public AnalyticsServiceImpl(ProcessRegistry registry, SnapshotService snapshotService, ApplicationConfig config) {
+    public AnalyticsServiceImpl(ProcessRegistry registry, SnapshotService snapshotService, ApplicationConfig config, ProcessAggregationService processAggregationService) {
         this.registry = registry;
         this.snapshotService = snapshotService;
         this.config = config;
+        this.processAggregationService = processAggregationService;
     }
 
     @Override
@@ -59,38 +60,17 @@ public class AnalyticsServiceImpl implements AnalyticsService {
     private void summarize() {
         final Map<Long, Process> processes = this.registry.findAll();
 
-        final Map<ProcessCategory, Long> timePerCategory = this.aggregateTimePerCategory(processes);
+        final Map<ProcessCategory, Long> timePerCategory = this.processAggregationService.getTimePerCategory();
         final List<Process> topByCpu = this.topProcessesByInfoDouble(processes, ProcessInfo::getCpuUsage);
         final List<Process> topByRam = this.topProcessesByInfoLong(processes, ProcessInfo::getRamUsageKb);
-        final List<Process> topByTime = this.topProcessesByProcessLong(processes, Process::getTotalTimeSeconds);
+        final List<Process> topByTime = this.processAggregationService.getAggregatedProcesses().stream()
+            .sorted(Comparator.comparingLong(Process::getTotalTimeSeconds).reversed())
+            .limit(TOP_PROCESS_COUNT)
+            .toList();
 
         this.latestSummary = new AnalyticsSummary(timePerCategory, topByCpu, topByRam, topByTime);
 
         this.checkFixedTimes();
-    }
-
-    private Map<ProcessCategory, Long> aggregateTimePerCategory(Map<Long, Process> processes) {
-        final Map<ProcessCategory, Long> result = new EnumMap<>(ProcessCategory.class);
-        for (final ProcessCategory category : ProcessCategory.values()) {
-            result.put(category, 0L);
-        }
-
-        for (final Process process : processes.values()) {
-            final ProcessCategory category = Optional
-                .ofNullable(process.getProcessCategory())
-                .orElse(ProcessCategory.UNCATEGORIZED);
-
-            result.merge(category, process.getTotalTimeSeconds(), Long::sum);
-        }
-
-        return result;
-    }
-
-    private List<Process> topProcessesByProcessLong(Map<Long, Process> processes, ToLongFunction<Process> metric) {
-        return processes.values().stream()
-            .sorted(Comparator.comparingLong(metric).reversed())
-            .limit(TOP_PROCESS_COUNT)
-            .toList();
     }
 
     private List<Process> topProcessesByInfoLong(Map<Long, Process> processes, ToLongFunction<ProcessInfo> metric) {

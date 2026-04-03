@@ -1,7 +1,8 @@
 package org.productivitybuddy.controller;
 
 import java.io.File;
-import java.util.ArrayList;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.List;
 import javafx.animation.TranslateTransition;
 import javafx.application.Platform;
@@ -13,8 +14,10 @@ import javafx.scene.layout.Region;
 import javafx.stage.FileChooser;
 import javafx.stage.FileChooser.ExtensionFilter;
 import javafx.util.Duration;
+import org.productivitybuddy.config.ApplicationConfig;
 import org.productivitybuddy.model.Process;
-import org.productivitybuddy.registry.ProcessRegistry;
+import org.productivitybuddy.service.ProcessAggregationService;
+import org.productivitybuddy.service.ProcessStateService;
 import org.productivitybuddy.service.FileExecutorService;
 import org.productivitybuddy.store.ProcessStore;
 import org.productivitybuddy.ui.Icons;
@@ -24,9 +27,11 @@ import org.springframework.stereotype.Component;
 @Component
 @Scope("prototype")
 public class ToolbarController {
-    private final ProcessRegistry registry;
+    private final ApplicationConfig config;
     private final ProcessStore processStore;
     private final FileExecutorService fileExecutorService;
+    private final ProcessAggregationService processAggregationService;
+    private final ProcessStateService processStateService;
 
     @FXML
     private HBox toolbar;
@@ -43,10 +48,12 @@ public class ToolbarController {
 
     private boolean darkMode;
 
-    public ToolbarController(ProcessRegistry registry, ProcessStore processStore, FileExecutorService fileExecutorService) {
-        this.registry = registry;
+    public ToolbarController(ApplicationConfig config, ProcessStore processStore, FileExecutorService fileExecutorService, ProcessAggregationService processAggregationService, ProcessStateService processStateService) {
+        this.config = config;
         this.processStore = processStore;
         this.fileExecutorService = fileExecutorService;
+        this.processAggregationService = processAggregationService;
+        this.processStateService = processStateService;
     }
 
     @FXML
@@ -75,8 +82,11 @@ public class ToolbarController {
         }
 
         this.fileExecutorService.submit(() -> {
-            final List<Process> processes = new ArrayList<>(this.registry.findAll().values());
-            this.processStore.saveAll(processes, file.toPath());
+            final List<Process> snapshot = this.processAggregationService.buildProcessSnapshot();
+            this.processStore.saveAll(snapshot, file.toPath());
+            if (this.isPrimaryMappingFile(file.toPath())) {
+                Platform.runLater(() -> this.processStateService.commitSavedSnapshot(snapshot));
+            }
         });
     }
 
@@ -95,15 +105,7 @@ public class ToolbarController {
 
         this.fileExecutorService.submit(() -> {
             final List<Process> loaded = this.processStore.loadAll(file.toPath());
-            Platform.runLater(() -> {
-                for (final Process saved : loaded) {
-                    for (final Process active : this.registry.findByName(saved.getOriginalName())) {
-                        active.setAliasName(saved.getAliasName());
-                        active.setProcessCategory(saved.getProcessCategory());
-                        active.setTrackingFrozen(saved.isTrackingFrozen());
-                    }
-                }
-            });
+            Platform.runLater(() -> this.processStateService.applyLoadedProcesses(loaded));
         });
     }
 
@@ -138,5 +140,11 @@ public class ToolbarController {
         if (this.darkMode) {
             this.toggleSwitch.getStyleClass().add("toggle-switch-on");
         }
+    }
+
+    private boolean isPrimaryMappingFile(Path path) {
+        final Path selectedPath = path.toAbsolutePath().normalize();
+        final Path primaryPath = Paths.get(this.config.getMappingFile()).toAbsolutePath().normalize();
+        return selectedPath.equals(primaryPath);
     }
 }

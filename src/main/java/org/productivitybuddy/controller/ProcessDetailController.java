@@ -14,6 +14,8 @@ import org.productivitybuddy.model.Process;
 import org.productivitybuddy.model.ProcessCategory;
 import org.productivitybuddy.model.ProcessInfo;
 import org.productivitybuddy.registry.ProcessRegistry;
+import org.productivitybuddy.service.ProcessAggregationService;
+import org.productivitybuddy.service.ProcessStateService;
 import org.productivitybuddy.ui.Icons;
 import org.productivitybuddy.util.TimeHelper;
 import org.springframework.context.annotation.Scope;
@@ -24,6 +26,8 @@ import org.springframework.stereotype.Component;
 public class ProcessDetailController implements AnalyticsUpdateListener {
     private final ProcessRegistry registry;
     private final AnalyticsUpdateTimer updateTimer;
+    private final ProcessAggregationService processAggregationService;
+    private final ProcessStateService processStateService;
 
     @FXML
     private Label nameLabel;
@@ -51,9 +55,11 @@ public class ProcessDetailController implements AnalyticsUpdateListener {
     private Process process;
     private MainViewController mainController;
 
-    public ProcessDetailController(ProcessRegistry registry, AnalyticsUpdateTimer updateTimer) {
+    public ProcessDetailController(ProcessRegistry registry, AnalyticsUpdateTimer updateTimer, ProcessAggregationService processAggregationService, ProcessStateService processStateService) {
         this.registry = registry;
         this.updateTimer = updateTimer;
+        this.processAggregationService = processAggregationService;
+        this.processStateService = processStateService;
     }
 
     @FXML
@@ -91,7 +97,10 @@ public class ProcessDetailController implements AnalyticsUpdateListener {
 
         final Alert alert = new Alert(Alert.AlertType.CONFIRMATION,
             "Kill process " + this.process.getDisplayName() + " (PID: " + this.process.getProcessInfo().getPid() + ")?",
-            ButtonType.YES, ButtonType.NO);
+            ButtonType.YES,
+            ButtonType.NO
+        );
+
         alert.setTitle("Confirm Kill");
         alert.showAndWait().ifPresent(response -> {
             if (response == ButtonType.YES) {
@@ -104,7 +113,9 @@ public class ProcessDetailController implements AnalyticsUpdateListener {
 
     @FXML
     private void onToggleFreeze() {
-        this.process.setTrackingFrozen(!this.process.isTrackingFrozen());
+        final boolean frozen = !this.process.isTrackingFrozen();
+        this.processStateService.setTrackingFrozenByOriginalName(this.process.getOriginalName(), frozen);
+        this.process.setTrackingFrozen(frozen);
         this.updateFreezeButtonState();
     }
 
@@ -116,7 +127,9 @@ public class ProcessDetailController implements AnalyticsUpdateListener {
         dialog.setHeaderText("Set alias for " + this.process.getOriginalName());
         dialog.setContentText("Alias:");
         dialog.showAndWait().ifPresent(name -> {
-            this.process.setAliasName(name.isBlank() ? null : name);
+            final String alias = name.isBlank() ? null : name;
+            this.processStateService.renameByOriginalName(this.process.getOriginalName(), alias);
+            this.process.setAliasName(alias);
             this.refreshInfo();
             this.mainController.refreshTable();
         });
@@ -129,6 +142,7 @@ public class ProcessDetailController implements AnalyticsUpdateListener {
         dialog.setTitle("Change Category");
         dialog.setHeaderText("Select category for " + this.process.getDisplayName());
         dialog.showAndWait().ifPresent(category -> {
+            this.processStateService.changeCategoryByOriginalName(this.process.getOriginalName(), category);
             this.process.setProcessCategory(category);
             this.refreshInfo();
             this.mainController.refreshTable();
@@ -155,7 +169,8 @@ public class ProcessDetailController implements AnalyticsUpdateListener {
         final ProcessInfo info = this.process.getProcessInfo();
 
         this.nameLabel.setText(this.process.getDisplayName());
-        this.totalTimeLabel.setText("Total time - " + TimeHelper.toString(this.process.getTotalTimeSeconds()));
+        this.totalTimeLabel.setText("Total time - " + TimeHelper.toString(
+            this.processAggregationService.getDisplayTotalTimeSeconds(this.process.getOriginalName())));
 
         final double cpu = info != null ? info.getCpuUsage() : 0.0;
         final long ram = info != null ? info.getRamUsageKb() : 0L;

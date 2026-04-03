@@ -43,7 +43,7 @@ public class ProcessScannerServiceImpl implements ProcessScannerService {
     @Override
     public void start() {
         final List<Process> loaded = this.processStore.loadAll();
-        loaded.forEach(p -> this.savedProcesses.put(p.getOriginalName(), p));
+        this.replaceSavedProcesses(loaded);
         log.info("Loaded {} saved processes from store", loaded.size());
 
         this.scheduler.scheduleAtFixedRate(this::scan, 0, this.config.getMonitorInterval(), TimeUnit.MILLISECONDS);
@@ -58,11 +58,43 @@ public class ProcessScannerServiceImpl implements ProcessScannerService {
     }
 
     @Override
+    public Map<String, Process> getSavedProcesses() {
+        return Map.copyOf(this.savedProcesses);
+    }
+
+    @Override
+    public void replaceSavedProcesses(List<Process> processes) {
+        this.savedProcesses.clear();
+        for (final Process process : processes) {
+            if (process.getOriginalName() == null || process.getOriginalName().isBlank()) {
+                continue;
+            }
+
+            final Process copy = process.copy();
+
+            this.savedProcesses.merge(copy.getOriginalName(), copy, (existing, incoming) -> {
+                existing.setTotalTimeSeconds(existing.getTotalTimeSeconds() + incoming.getTotalTimeSeconds());
+                if (incoming.getAliasName() != null && !incoming.getAliasName().isBlank()) {
+                    existing.setAliasName(incoming.getAliasName());
+                }
+
+                if (incoming.getProcessCategory() != null) {
+                    existing.setProcessCategory(incoming.getProcessCategory());
+                }
+
+                existing.setTrackingFrozen(incoming.isTrackingFrozen());
+                return existing;
+            });
+        }
+    }
+
+    @Override
     public void scan() {
-        final List<OSProcess> processes = this.systemInfo.getOperatingSystem().getProcesses(null, null, 0);
+        final List<OSProcess> processes = this.systemInfo.getOperatingSystem().getProcesses();
         final Set<Long> activePids = ConcurrentHashMap.newKeySet();
 
         final long scanIntervalSeconds = this.config.getMonitorInterval() / 1000;
+
         this.forkJoinPool.invoke(new ProcessScanTask(
             processes,
             0,
@@ -73,12 +105,36 @@ public class ProcessScannerServiceImpl implements ProcessScannerService {
             this.savedProcesses
         ));
 
-        this.registry.findAll().keySet()
-            .stream()
-            .filter(pid -> !activePids.contains(pid))
-            .forEach(this.registry::remove);
+        this.removeTerminatedProcesses(activePids);
 
         log.debug("Scan complete, {} active processes", activePids.size());
+    }
+
+    /**
+     * Flushes session time of terminated processes into savedProcesses
+     * and removes them from the registry.
+     */
+    private void removeTerminatedProcesses(Set<Long> activePids) {
+        final var entries = this.registry.findAll().entrySet();
+        for (final var entry : entries) {
+            if (activePids.contains(entry.getKey())) {
+                continue;
+            }
+
+            final Process terminated = entry.getValue();
+            final String name = terminated.getOriginalName();
+
+            this.savedProcesses.compute(name, (key, existing) -> {
+                if (existing != null) {
+                    existing.setTotalTimeSeconds(existing.getTotalTimeSeconds() + terminated.getTotalTimeSeconds());
+                    return existing;
+                }
+
+                return terminated.copy();
+            });
+
+            this.registry.remove(entry.getKey());
+        }
     }
 
     private static class ProcessScanTask extends RecursiveAction {
@@ -113,11 +169,10 @@ public class ProcessScannerServiceImpl implements ProcessScannerService {
 
             final int mid = this.start + (this.end - this.start) / 2;
 
-            final ProcessScanTask left = new ProcessScanTask(
-                this.processes, this.start, mid, this.registry, this.activePids,
+            final ProcessScanTask left = new ProcessScanTask(this.processes, this.start, mid, this.registry, this.activePids,
                 this.scanIntervalSeconds, this.savedProcesses);
-            final ProcessScanTask right = new ProcessScanTask(
-                this.processes, mid, this.end, this.registry, this.activePids,
+
+            final ProcessScanTask right = new ProcessScanTask(this.processes, mid, this.end, this.registry, this.activePids,
                 this.scanIntervalSeconds, this.savedProcesses);
 
             left.fork();
@@ -157,7 +212,6 @@ public class ProcessScannerServiceImpl implements ProcessScannerService {
                             newProcess.setAliasName(saved.getAliasName());
                             newProcess.setProcessCategory(saved.getProcessCategory());
                             newProcess.setTrackingFrozen(saved.isTrackingFrozen());
-                            newProcess.setTotalTimeSeconds(saved.getTotalTimeSeconds());
                         }
                         return newProcess;
                     });

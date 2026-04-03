@@ -14,7 +14,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.productivitybuddy.config.ApplicationConfig;
 import org.productivitybuddy.lifecycle.Lifecycle;
 import org.productivitybuddy.model.Process;
-import org.productivitybuddy.registry.ProcessRegistry;
+import org.productivitybuddy.service.ProcessStateService;
 import org.productivitybuddy.store.ProcessStore;
 import org.springframework.stereotype.Component;
 
@@ -22,18 +22,19 @@ import org.springframework.stereotype.Component;
 @Slf4j
 public class FileWatcherService implements Lifecycle {
     private final ProcessStore processStore;
-    private final ProcessRegistry registry;
     private final ApplicationConfig config;
+    private final ProcessStateService processStateService;
 
     private volatile boolean running;
 
     private Thread watcherThread;
     private WatchService watchService;
 
-    public FileWatcherService(ProcessStore processStore, ProcessRegistry registry, ApplicationConfig config) {
+    public FileWatcherService(ProcessStore processStore, ApplicationConfig config,
+                              ProcessStateService processStateService) {
         this.processStore = processStore;
-        this.registry = registry;
         this.config = config;
+        this.processStateService = processStateService;
     }
 
     @Override
@@ -70,6 +71,7 @@ public class FileWatcherService implements Lifecycle {
         if (this.watcherThread != null) {
             this.watcherThread.interrupt();
         }
+
         log.info("FileWatcherService stopped");
     }
 
@@ -102,15 +104,7 @@ public class FileWatcherService implements Lifecycle {
     private void applyExternalChanges() {
         try {
             final List<Process> loaded = this.processStore.loadAll();
-
-            for (final Process saved : loaded) {
-                final List<Process> matching = this.registry.findByName(saved.getOriginalName());
-                for (final Process active : matching) {
-                    active.setAliasName(saved.getAliasName());
-                    active.setProcessCategory(saved.getProcessCategory());
-                    active.setTrackingFrozen(saved.isTrackingFrozen());
-                }
-            }
+            this.processStateService.applyLoadedProcesses(loaded);
 
             log.info("Applied external changes from {}", this.config.getMappingFile());
         } catch (Exception e) {

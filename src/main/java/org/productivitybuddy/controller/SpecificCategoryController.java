@@ -19,6 +19,7 @@ import org.productivitybuddy.model.Process;
 import org.productivitybuddy.model.ProcessCategory;
 import org.productivitybuddy.model.ProcessInfo;
 import org.productivitybuddy.registry.ProcessRegistry;
+import org.productivitybuddy.service.ProcessAggregationService;
 import org.productivitybuddy.ui.ProcessNameTableCell;
 import org.productivitybuddy.ui.Icons;
 import org.productivitybuddy.util.TimeHelper;
@@ -30,6 +31,7 @@ import org.springframework.stereotype.Component;
 public class SpecificCategoryController implements AnalyticsUpdateListener {
     private final ProcessRegistry registry;
     private final AnalyticsUpdateTimer updateTimer;
+    private final ProcessAggregationService processAggregationService;
 
     private final ObservableList<Process> tableData = FXCollections.observableArrayList();
 
@@ -53,9 +55,10 @@ public class SpecificCategoryController implements AnalyticsUpdateListener {
     private ProcessCategory category;
     private MainViewController mainController;
 
-    public SpecificCategoryController(ProcessRegistry registry, AnalyticsUpdateTimer updateTimer) {
+    public SpecificCategoryController(ProcessRegistry registry, AnalyticsUpdateTimer updateTimer, ProcessAggregationService processAggregationService) {
         this.registry = registry;
         this.updateTimer = updateTimer;
+        this.processAggregationService = processAggregationService;
     }
 
     @FXML
@@ -74,9 +77,11 @@ public class SpecificCategoryController implements AnalyticsUpdateListener {
 
             return new ReadOnlyStringWrapper(info.getRamUsageKb() + " KB | " + String.format("%.1f%%", info.getCpuUsage()));
         });
+
         this.resourceColumn.setCellFactory(column -> this.centeredCell());
 
-        this.timeColumn.setCellValueFactory(cd -> new ReadOnlyStringWrapper(TimeHelper.toString(cd.getValue().getTotalTimeSeconds())));
+        this.timeColumn.setCellValueFactory(cd -> new ReadOnlyStringWrapper(
+            TimeHelper.toString(this.processAggregationService.getDisplayTotalTimeSeconds(cd.getValue().getOriginalName()))));
         this.timeColumn.setCellFactory(column -> this.centeredCell());
 
         this.categoryTable.setItems(this.tableData);
@@ -108,12 +113,15 @@ public class SpecificCategoryController implements AnalyticsUpdateListener {
     private void refreshData() {
         final List<Process> filtered = this.registry.findAll().values().stream()
             .filter(process -> process.getProcessCategory() == this.category)
-            .sorted(Comparator.comparingLong(Process::getTotalTimeSeconds).reversed())
+            .sorted(Comparator.comparingLong(
+                (Process process) -> this.processAggregationService.getDisplayTotalTimeSeconds(process.getOriginalName()))
+                .reversed())
             .toList();
 
         this.tableData.setAll(filtered);
 
-        final List<Process> top10 = filtered.stream()
+        final List<Process> top10 = this.processAggregationService.getAggregatedProcessesByCategory(this.category).stream()
+            .sorted(Comparator.comparingLong(Process::getTotalTimeSeconds).reversed())
             .limit(10)
             .toList();
 
@@ -126,9 +134,7 @@ public class SpecificCategoryController implements AnalyticsUpdateListener {
 
         this.top10Chart.setData(pieData);
 
-        final long totalSeconds = filtered.stream()
-            .mapToLong(Process::getTotalTimeSeconds)
-            .sum();
+        final long totalSeconds = this.processAggregationService.getTimePerCategory().getOrDefault(this.category, 0L);
 
         this.totalTimeLabel.setText(this.category.getDisplayName() + " total time - " + TimeHelper.toString(totalSeconds));
     }
