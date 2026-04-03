@@ -28,4 +28,13 @@ public class Process {
 
         return this.originalName;
     }
+
+    public Process copy() {
+        final Process copy = new Process(this.originalName);
+        copy.setAliasName(this.aliasName);
+        copy.setProcessCategory(this.processCategory);
+        copy.setTrackingFrozen(this.trackingFrozen);
+        copy.setTotalTimeSeconds(this.totalTimeSeconds);
+        return copy;
+    }
 }
