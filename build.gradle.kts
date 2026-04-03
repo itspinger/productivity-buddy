@@ -99,8 +99,7 @@ tasks.register<Exec>("nativePackage") {
         else -> "deb"
     }
 
-    executable = jpackageBin.get()
-    args = listOf(
+    val packageArgs = mutableListOf(
         "--type", installerType,
         "--name", "ProductivityBuddy",
         "--app-version", "1.0.0",
@@ -109,4 +108,15 @@ tasks.register<Exec>("nativePackage") {
         "--main-class", "org.productivitybuddy.ProductivityBuddyLauncher",
         "--dest", outputDir.get().asFile.absolutePath
     )
+
+    if (org.gradle.internal.os.OperatingSystem.current().isWindows) {
+        packageArgs += listOf(
+            "--win-menu",
+            "--win-shortcut",
+            "--win-menu-group", "ProductivityBuddy"
+        )
+    }
+
+    executable = jpackageBin.get()
+    args = packageArgs
 }
