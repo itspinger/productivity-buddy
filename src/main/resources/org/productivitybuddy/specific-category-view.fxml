@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.chart.PieChart?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<VBox xmlns:fx="http://javafx.com/fxml" fx:controller="org.productivitybuddy.controller.SpecificCategoryController" spacing="16">
+    <padding>
+        <Insets topRightBottomLeft="10"/>
+    </padding>
+
+    <HBox spacing="10" alignment="CENTER_LEFT">
+        <Button text="&#x2190;"
+            style="-fx-background-color: transparent; -fx-font-size: 24; -fx-text-fill: #007AFF; -fx-cursor: hand; -fx-padding: 0;"
+            onAction="#onBack"/>
+        <Label fx:id="headerLabel" style="-fx-font-size: 18; -fx-font-weight: bold;"/>
+    </HBox>
+
+    <HBox spacing="20" VBox.vgrow="ALWAYS">
+        <VBox spacing="8" prefWidth="430">
+            <Label text="Processes" style="-fx-font-size: 13; -fx-font-weight: bold;"/>
+            <TableView fx:id="categoryTable" VBox.vgrow="ALWAYS">
+                <columns>
+                    <TableColumn fx:id="nameColumn" text="Process" prefWidth="160"/>
+                    <TableColumn fx:id="resourceColumn" text="RAM &amp; CPU" prefWidth="150"/>
+                    <TableColumn fx:id="timeColumn" text="Time" prefWidth="110"/>
+                </columns>
+            </TableView>
+        </VBox>
+
+        <VBox spacing="12" alignment="TOP_CENTER" HBox.hgrow="ALWAYS">
+            <Label text="Top 10 processes by time spent" style="-fx-font-size: 13; -fx-font-weight: bold;"/>
+            <PieChart fx:id="top10Chart" legendVisible="false" prefHeight="320" prefWidth="420"/>
+            <Label fx:id="totalTimeLabel" style="-fx-font-size: 14; -fx-font-weight: bold;"/>
+        </VBox>
+    </HBox>
+</VBox>

@@ -1,53 +1,48 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
 
-<BorderPane stylesheets="@toggle-switch.css" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.productivitybuddy.controller.MainViewController">
-   <top>
-      <HBox alignment="CENTER_LEFT" spacing="10.0">
-         <padding>
-            <Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />
-         </padding>
-         <Button text="Save" />
-         <Button text="Load" />
-         <Button text="Shutdown" />
-         <Region HBox.hgrow="ALWAYS" />
-         <Label text="Dark Mode" />
-         <HBox fx:id="toggleSwitch" alignment="CENTER_LEFT" onMouseClicked="#onToggleDarkMode" prefHeight="24.0" prefWidth="44.0" styleClass="toggle-switch">
-            <Region fx:id="toggleThumb" prefHeight="20.0" prefWidth="20.0" styleClass="toggle-thumb">
-               <HBox.margin>
-                  <Insets bottom="2.0" left="2.0" top="2.0" />
-               </HBox.margin>
-            </Region>
-         </HBox>
-      </HBox>
-   </top>
+<BorderPane stylesheets="@toggle-switch.css"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="org.productivitybuddy.controller.MainViewController">
 
-   <center>
-      <HBox spacing="10.0" BorderPane.alignment="CENTER">
-         <children>
-            <VBox prefWidth="340" spacing="5">
-               <TextField fx:id="searchField" promptText="Search processes..." />
-               <TableView fx:id="processTable" VBox.vgrow="ALWAYS">
-                  <columns>
-                     <TableColumn fx:id="processNameColumn" prefWidth="200" text="Process" />
-                     <TableColumn fx:id="processCategoryColumn" prefWidth="120" text="Category" />
-                  </columns>
-                  <VBox.margin>
-                     <Insets />
-                  </VBox.margin>
-               </TableView>
-            </VBox>
-            <VBox prefHeight="200.0" prefWidth="100.0" />
-         </children>
-         <BorderPane.margin>
-            <Insets />
-         </BorderPane.margin>
-         <padding>
-            <Insets bottom="10.0" left="10.0" right="10.0" top="5.0" />
-         </padding>
-      </HBox>
-   </center>
+    <top>
+        <fx:include source="toolbar.fxml" fx:id="toolbar"/>
+    </top>
+
+    <center>
+        <StackPane>
+            <padding>
+                <Insets bottom="10" left="10" right="10" top="5"/>
+            </padding>
+
+            <HBox fx:id="splitView" spacing="10">
+                <VBox fx:id="processPanel" prefWidth="340" spacing="5">
+                    <TextField fx:id="searchField" promptText="Search processes..."/>
+                    <TableView fx:id="processTable" VBox.vgrow="ALWAYS">
+                        <columns>
+                            <TableColumn fx:id="processNameColumn" text="Process" prefWidth="200"/>
+                            <TableColumn fx:id="processCategoryColumn" text="Category" prefWidth="120"/>
+                        </columns>
+                    </TableView>
+                </VBox>
+
+                <VBox fx:id="rightPanel" HBox.hgrow="ALWAYS">
+                    <padding>
+                        <Insets topRightBottomLeft="10"/>
+                    </padding>
+                </VBox>
+            </HBox>
+
+            <VBox fx:id="fullWidthHost" visible="false" managed="false" spacing="10"/>
+        </StackPane>
+    </center>
+
 </BorderPane>

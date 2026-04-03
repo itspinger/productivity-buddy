@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.chart.PieChart?>
+<?import javafx.scene.layout.VBox?>
+
+<VBox xmlns:fx="http://javafx.com/fxml"
+      fx:controller="org.productivitybuddy.controller.DefaultRightPanelController"
+      spacing="10">
+    <padding><Insets topRightBottomLeft="10"/></padding>
+
+    <PieChart fx:id="categoryPieChart" title="Time Distribution" legendVisible="false" prefHeight="300"/>
+
+    <VBox fx:id="categoryList" spacing="5">
+        <padding><Insets top="5"/></padding>
+    </VBox>
+</VBox>

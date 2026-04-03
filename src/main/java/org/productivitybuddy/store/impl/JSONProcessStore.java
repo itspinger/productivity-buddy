@@ -31,7 +31,11 @@ public class JSONProcessStore implements ProcessStore {
 
     @Override
     public List<Process> loadAll() {
-        final Path path = Paths.get(this.config.getMappingFile());
+        return this.loadAll(Paths.get(this.config.getMappingFile()));
+    }
+
+    @Override
+    public List<Process> loadAll(Path path) {
         if (Files.notExists(path)) {
             log.info("Mapping file {} does not exist", path);
             return new ArrayList<>();
@@ -42,7 +46,7 @@ public class JSONProcessStore implements ProcessStore {
             final JsonArray processes = root.getAsJsonArray("processes");
 
             return StreamSupport.stream(processes.spliterator(), false)
-                .map((element) -> this.gson.fromJson(element, Process.class))
+                .map(element -> this.gson.fromJson(element, Process.class))
                 .toList();
         } catch (IOException e) {
             throw new IllegalStateException("Failed to load process info from " + path, e);
@@ -51,8 +55,11 @@ public class JSONProcessStore implements ProcessStore {
 
     @Override
     public void saveAll(List<Process> processes) {
-        final Path path = Paths.get(this.config.getMappingFile());
+        this.saveAll(processes, Paths.get(this.config.getMappingFile()));
+    }
 
+    @Override
+    public void saveAll(List<Process> processes, Path path) {
         final JsonObject root = new JsonObject();
         root.add("processes", this.gson.toJsonTree(processes));
 

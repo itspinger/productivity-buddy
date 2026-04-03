@@ -21,6 +21,9 @@ module org.productivitybuddy.productivitybuddy {
     exports org.productivitybuddy.app;
     opens org.productivitybuddy.app to javafx.fxml;
 
+    opens org.productivitybuddy.controller to javafx.fxml, spring.core, spring.beans, spring.context;
+    exports org.productivitybuddy.controller;
+
     opens org.productivitybuddy.service to spring.core, spring.beans, spring.context;
     opens org.productivitybuddy.service.impl to spring.core, spring.beans, spring.context;
 }
