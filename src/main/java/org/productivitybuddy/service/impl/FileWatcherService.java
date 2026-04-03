@@ -3,8 +3,8 @@ package org.productivitybuddy.service.impl;
 import java.io.IOException;
 import java.nio.file.ClosedWatchServiceException;
 import java.nio.file.FileSystems;
+import java.nio.file.Files;
 import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.nio.file.StandardWatchEventKinds;
 import java.nio.file.WatchEvent;
 import java.nio.file.WatchKey;
@@ -47,10 +47,13 @@ public class FileWatcherService implements Lifecycle {
     public void start() {
         try {
             this.watchService = FileSystems.getDefault().newWatchService();
-            final Path filePath = Paths.get(this.config.getMappingFile()).toAbsolutePath();
+            final Path filePath = this.config.getResolvedMappingFilePath();
             final Path directory = filePath.getParent();
+            if (directory != null) {
+                Files.createDirectories(directory);
+                directory.register(this.watchService, StandardWatchEventKinds.ENTRY_MODIFY);
+            }
 
-            directory.register(this.watchService, StandardWatchEventKinds.ENTRY_MODIFY);
             this.running = true;
 
             this.watcherThread = new Thread(this::watch, "file-watcher-thread");
@@ -82,7 +85,7 @@ public class FileWatcherService implements Lifecycle {
     }
 
     private void watch() {
-        final String fileName = Paths.get(this.config.getMappingFile()).getFileName().toString();
+        final String fileName = this.config.getResolvedMappingFilePath().getFileName().toString();
 
         while (this.running) {
             try {
@@ -113,7 +116,7 @@ public class FileWatcherService implements Lifecycle {
                 final List<Process> loaded = this.processStore.loadAll();
                 Platform.runLater(() -> {
                     this.processStateService.loadState(loaded);
-                    log.info("Applied external changes from {}", this.config.getMappingFile());
+                    log.info("Applied external changes from {}", this.config.getResolvedMappingFilePath());
                 });
             } catch (Exception e) {
                 log.error("Failed to apply external changes", e);

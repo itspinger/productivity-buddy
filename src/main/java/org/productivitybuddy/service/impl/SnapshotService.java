@@ -75,9 +75,12 @@ public class SnapshotService implements Lifecycle {
         this.fileExecutorService.submit(() -> {
             final Instant now = Instant.now();
             final String fileName = "snapshot_" + FILE_NAME_FORMATTER.format(now) + ".csv";
-            final Path path = Paths.get(fileName);
+            final Path path = this.config.getApplicationDataDirectory().resolve(fileName);
 
-            try (final BufferedWriter writer = Files.newBufferedWriter(path)) {
+            try {
+                Files.createDirectories(path.getParent());
+
+                try (final BufferedWriter writer = Files.newBufferedWriter(path)) {
                 writer.write(CSV_HEADER);
                 writer.newLine();
 
@@ -85,6 +88,7 @@ public class SnapshotService implements Lifecycle {
                 for (final Map.Entry<Long, Process> entry : processes.entrySet()) {
                     writer.write(formatCsvLine(timestamp, entry.getKey(), entry.getValue()));
                     writer.newLine();
+                }
                 }
 
                 log.info("Snapshot written to {}", path);

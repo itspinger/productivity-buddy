@@ -2,7 +2,6 @@ package org.productivitybuddy.controller;
 
 import java.io.File;
 import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.util.List;
 import javafx.animation.TranslateTransition;
 import javafx.application.Platform;
@@ -166,7 +165,7 @@ public class ToolbarController {
 
     private boolean isPrimaryMappingFile(Path path) {
         final Path selectedPath = path.toAbsolutePath().normalize();
-        final Path primaryPath = Paths.get(this.config.getMappingFile()).toAbsolutePath().normalize();
+        final Path primaryPath = this.config.getResolvedMappingFilePath();
         return selectedPath.equals(primaryPath);
     }
 }

@@ -8,7 +8,6 @@ import java.io.Reader;
 import java.io.Writer;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.StreamSupport;
@@ -31,7 +30,7 @@ public class JSONProcessStore implements ProcessStore {
 
     @Override
     public List<Process> loadAll() {
-        return this.loadAll(Paths.get(this.config.getMappingFile()));
+        return this.loadAll(this.config.getResolvedMappingFilePath());
     }
 
     @Override
@@ -64,7 +63,7 @@ public class JSONProcessStore implements ProcessStore {
 
     @Override
     public void saveAll(List<Process> processes) {
-        this.saveAll(processes, Paths.get(this.config.getMappingFile()));
+        this.saveAll(processes, this.config.getResolvedMappingFilePath());
     }
 
     @Override
