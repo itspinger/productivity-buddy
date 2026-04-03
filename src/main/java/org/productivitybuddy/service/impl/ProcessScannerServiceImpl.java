@@ -63,6 +63,14 @@ public class ProcessScannerServiceImpl implements ProcessScannerService {
     }
 
     @Override
+    public void updateSavedProcess(String originalName, java.util.function.Consumer<Process> updater) {
+        final Process saved = this.savedProcesses.get(originalName);
+        if (saved != null) {
+            updater.accept(saved);
+        }
+    }
+
+    @Override
     public void replaceSavedProcesses(List<Process> processes) {
         this.savedProcesses.clear();
         for (final Process process : processes) {

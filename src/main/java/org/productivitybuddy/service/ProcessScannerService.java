@@ -46,4 +46,9 @@ public interface ProcessScannerService extends Lifecycle {
      * @param processes the persisted processes that should become the new saved baseline
      */
     void replaceSavedProcesses(List<Process> processes);
+
+    /**
+     * Applies a mutation to the saved process with the given name, if it exists.
+     */
+    void updateSavedProcess(String originalName, java.util.function.Consumer<Process> updater);
 }

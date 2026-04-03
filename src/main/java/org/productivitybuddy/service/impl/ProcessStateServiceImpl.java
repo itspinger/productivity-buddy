@@ -23,17 +23,20 @@ public class ProcessStateServiceImpl implements ProcessStateService {
 
     @Override
     public void renameByOriginalName(String originalName, String aliasName) {
-        this.forEachMatchingProcess(originalName, (process) -> process.setAliasName(aliasName));
+        this.forEachMatchingProcess(originalName, process -> process.setAliasName(aliasName));
+        this.updateSaved(originalName, saved -> saved.setAliasName(aliasName));
     }
 
     @Override
     public void changeCategoryByOriginalName(String originalName, ProcessCategory category) {
-        this.forEachMatchingProcess(originalName, (process) -> process.setProcessCategory(category));
+        this.forEachMatchingProcess(originalName, process -> process.setProcessCategory(category));
+        this.updateSaved(originalName, saved -> saved.setProcessCategory(category));
     }
 
     @Override
     public void setTrackingFrozenByOriginalName(String originalName, boolean frozen) {
-        this.forEachMatchingProcess(originalName, (process) -> process.setTrackingFrozen(frozen));
+        this.forEachMatchingProcess(originalName, process -> process.setTrackingFrozen(frozen));
+        this.updateSaved(originalName, saved -> saved.setTrackingFrozen(frozen));
     }
 
     @Override
@@ -78,5 +81,9 @@ public class ProcessStateServiceImpl implements ProcessStateService {
         for (final Process process : this.registry.findByName(originalName)) {
             action.accept(process);
         }
+    }
+
+    private void updateSaved(String originalName, Consumer<Process> action) {
+        this.processScannerService.updateSavedProcess(originalName, action);
     }
 }
