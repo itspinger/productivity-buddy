@@ -14,6 +14,7 @@ import org.productivitybuddy.model.Process;
 import org.productivitybuddy.model.ProcessCategory;
 import org.productivitybuddy.model.ProcessInfo;
 import org.productivitybuddy.registry.ProcessRegistry;
+import org.productivitybuddy.ui.Icons;
 import org.productivitybuddy.util.TimeHelper;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
@@ -37,6 +38,14 @@ public class ProcessDetailController implements AnalyticsUpdateListener {
     @FXML
     private Label cpuRankLabel;
     @FXML
+    private Button backButton;
+    @FXML
+    private Button killButton;
+    @FXML
+    private Button changeNameButton;
+    @FXML
+    private Button changeCategoryButton;
+    @FXML
     private Button freezeButton;
 
     private Process process;
@@ -47,11 +56,19 @@ public class ProcessDetailController implements AnalyticsUpdateListener {
         this.updateTimer = updateTimer;
     }
 
+    @FXML
+    private void initialize() {
+        this.backButton.setGraphic(Icons.back());
+        this.killButton.setGraphic(Icons.kill());
+        this.changeNameButton.setGraphic(Icons.changeName());
+        this.changeCategoryButton.setGraphic(Icons.changeCategory());
+    }
+
     void init(Process process, MainViewController mainController) {
         this.process = process;
         this.mainController = mainController;
 
-        this.freezeButton.setText(this.process.isTrackingFrozen() ? "Unfreeze Tracking" : "Freeze Tracking");
+        this.updateFreezeButtonState();
         this.refreshInfo();
         this.updateTimer.addListener(this);
     }
@@ -88,7 +105,7 @@ public class ProcessDetailController implements AnalyticsUpdateListener {
     @FXML
     private void onToggleFreeze() {
         this.process.setTrackingFrozen(!this.process.isTrackingFrozen());
-        this.freezeButton.setText(this.process.isTrackingFrozen() ? "Unfreeze Tracking" : "Freeze Tracking");
+        this.updateFreezeButtonState();
     }
 
     @FXML
@@ -170,5 +187,10 @@ public class ProcessDetailController implements AnalyticsUpdateListener {
             case 3 -> "rd";
             default -> "th";
         };
+    }
+
+    private void updateFreezeButtonState() {
+        this.freezeButton.setText(this.process.isTrackingFrozen() ? "Unfreeze Tracking" : "Freeze Tracking");
+        this.freezeButton.setGraphic(Icons.freeze(this.process.isTrackingFrozen()));
     }
 }

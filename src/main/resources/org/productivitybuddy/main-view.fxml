@@ -9,7 +9,8 @@
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 
-<BorderPane stylesheets="@toggle-switch.css"
+<BorderPane fx:id="root"
+            stylesheets="@app-theme.css"
             xmlns:fx="http://javafx.com/fxml"
             fx:controller="org.productivitybuddy.controller.MainViewController">
 
@@ -24,8 +25,11 @@
             </padding>
 
             <HBox fx:id="splitView" spacing="10">
-                <VBox fx:id="processPanel" prefWidth="340" spacing="5">
-                    <TextField fx:id="searchField" promptText="Search processes..."/>
+                <VBox fx:id="processPanel" prefWidth="340" spacing="8" styleClass="surface-card">
+                    <padding>
+                        <Insets top="12" right="12" bottom="12" left="12"/>
+                    </padding>
+                    <TextField fx:id="searchField" promptText="Search processes..." styleClass="search-field"/>
                     <TableView fx:id="processTable" VBox.vgrow="ALWAYS">
                         <columns>
                             <TableColumn fx:id="processNameColumn" text="Process" prefWidth="200"/>
@@ -36,7 +40,7 @@
 
                 <VBox fx:id="rightPanel" HBox.hgrow="ALWAYS">
                     <padding>
-                        <Insets topRightBottomLeft="10"/>
+                        <Insets topRightBottomLeft="2"/>
                     </padding>
                 </VBox>
             </HBox>

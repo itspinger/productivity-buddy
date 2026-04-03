@@ -6,12 +6,13 @@
 
 <VBox xmlns:fx="http://javafx.com/fxml"
       fx:controller="org.productivitybuddy.controller.DefaultRightPanelController"
-      spacing="10">
-    <padding><Insets topRightBottomLeft="10"/></padding>
+      spacing="12"
+      styleClass="surface-card">
+    <padding><Insets top="18" right="18" bottom="18" left="18"/></padding>
 
     <PieChart fx:id="categoryPieChart" title="Time Distribution" legendVisible="false" prefHeight="300"/>
 
-    <VBox fx:id="categoryList" spacing="5">
+    <VBox fx:id="categoryList" spacing="8" styleClass="analytics-list">
         <padding><Insets top="5"/></padding>
     </VBox>
 </VBox>

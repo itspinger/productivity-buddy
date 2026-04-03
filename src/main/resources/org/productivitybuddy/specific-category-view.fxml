@@ -9,21 +9,22 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox xmlns:fx="http://javafx.com/fxml" fx:controller="org.productivitybuddy.controller.SpecificCategoryController" spacing="16">
+<VBox xmlns:fx="http://javafx.com/fxml"
+      fx:controller="org.productivitybuddy.controller.SpecificCategoryController"
+      spacing="16"
+      styleClass="surface-card">
     <padding>
-        <Insets topRightBottomLeft="10"/>
+        <Insets top="18" right="18" bottom="18" left="18"/>
     </padding>
 
     <HBox spacing="10" alignment="CENTER_LEFT">
-        <Button text="&#x2190;"
-            style="-fx-background-color: transparent; -fx-font-size: 24; -fx-text-fill: #007AFF; -fx-cursor: hand; -fx-padding: 0;"
-            onAction="#onBack"/>
-        <Label fx:id="headerLabel" style="-fx-font-size: 18; -fx-font-weight: bold;"/>
+        <Button fx:id="backButton" onAction="#onBack" styleClass="icon-button"/>
+        <Label fx:id="headerLabel" styleClass="view-title"/>
     </HBox>
 
     <HBox spacing="20" VBox.vgrow="ALWAYS">
         <VBox spacing="8" prefWidth="430">
-            <Label text="Processes" style="-fx-font-size: 13; -fx-font-weight: bold;"/>
+            <Label text="Processes" styleClass="section-title"/>
             <TableView fx:id="categoryTable" VBox.vgrow="ALWAYS">
                 <columns>
                     <TableColumn fx:id="nameColumn" text="Process" prefWidth="160"/>
@@ -34,9 +35,9 @@
         </VBox>
 
         <VBox spacing="12" alignment="TOP_CENTER" HBox.hgrow="ALWAYS">
-            <Label text="Top 10 processes by time spent" style="-fx-font-size: 13; -fx-font-weight: bold;"/>
+            <Label text="Top 10 processes by time spent" styleClass="section-title"/>
             <PieChart fx:id="top10Chart" legendVisible="false" prefHeight="320" prefWidth="420"/>
-            <Label fx:id="totalTimeLabel" style="-fx-font-size: 14; -fx-font-weight: bold;"/>
+            <Label fx:id="totalTimeLabel" styleClass="body-title"/>
         </VBox>
     </HBox>
 </VBox>

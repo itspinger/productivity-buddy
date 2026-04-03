@@ -10,19 +10,18 @@
 
 <VBox xmlns:fx="http://javafx.com/fxml"
     fx:controller="org.productivitybuddy.controller.ProcessDetailController"
-    spacing="15">
+    spacing="15"
+    styleClass="surface-card">
     <padding>
-        <Insets topRightBottomLeft="10"/>
+        <Insets top="18" right="18" bottom="18" left="18"/>
     </padding>
 
     <HBox alignment="CENTER_LEFT">
-        <Button text="&#x2190;"
-            style="-fx-background-color: transparent; -fx-font-size: 24; -fx-text-fill: #007AFF; -fx-cursor: hand; -fx-padding: 0;"
-            onAction="#onBack"/>
+        <Button fx:id="backButton" onAction="#onBack" styleClass="icon-button"/>
         <Region HBox.hgrow="ALWAYS"/>
         <VBox alignment="CENTER" spacing="8">
-            <Label fx:id="nameLabel" style="-fx-font-size: 16; -fx-font-weight: normal;"/>
-            <Label fx:id="totalTimeLabel" style="-fx-font-size: 14;"/>
+            <Label fx:id="nameLabel" styleClass="view-title"/>
+            <Label fx:id="totalTimeLabel" styleClass="body-subtitle"/>
         </VBox>
         <Region HBox.hgrow="ALWAYS"/>
     </HBox>
@@ -31,24 +30,24 @@
         <padding>
             <Insets top="10" bottom="10"/>
         </padding>
-        <VBox spacing="5" alignment="CENTER" GridPane.columnIndex="0" GridPane.rowIndex="0">
-            <Label fx:id="ramLabel" style="-fx-font-size: 14;"/>
-            <Label fx:id="ramRankLabel" style="-fx-font-size: 12; -fx-text-fill: gray;"/>
+        <VBox spacing="5" alignment="CENTER" styleClass="summary-row" GridPane.columnIndex="0" GridPane.rowIndex="0">
+            <Label fx:id="ramLabel" styleClass="metric-label"/>
+            <Label fx:id="ramRankLabel" styleClass="secondary-text"/>
         </VBox>
-        <VBox spacing="5" alignment="CENTER" GridPane.columnIndex="1" GridPane.rowIndex="0">
-            <Label fx:id="cpuLabel" style="-fx-font-size: 14;"/>
-            <Label fx:id="cpuRankLabel" style="-fx-font-size: 12; -fx-text-fill: gray;"/>
+        <VBox spacing="5" alignment="CENTER" styleClass="summary-row" GridPane.columnIndex="1" GridPane.rowIndex="0">
+            <Label fx:id="cpuLabel" styleClass="metric-label"/>
+            <Label fx:id="cpuRankLabel" styleClass="secondary-text"/>
         </VBox>
     </GridPane>
 
     <GridPane hgap="10" vgap="10" alignment="CENTER">
-        <Button text="Kill Process" prefWidth="140" onAction="#onKill"
+        <Button fx:id="killButton" text="Kill Process" prefWidth="160" onAction="#onKill" styleClass="button-danger"
             GridPane.columnIndex="0" GridPane.rowIndex="0"/>
-        <Button text="Change Name" prefWidth="140" onAction="#onChangeName"
+        <Button fx:id="changeNameButton" text="Change Name" prefWidth="160" onAction="#onChangeName"
             GridPane.columnIndex="1" GridPane.rowIndex="0"/>
-        <Button fx:id="freezeButton" text="Freeze Tracking" prefWidth="140" onAction="#onToggleFreeze"
+        <Button fx:id="freezeButton" text="Freeze Tracking" prefWidth="160" onAction="#onToggleFreeze"
             GridPane.columnIndex="0" GridPane.rowIndex="1"/>
-        <Button text="Change Category" prefWidth="140" onAction="#onChangeCategory"
+        <Button fx:id="changeCategoryButton" text="Change Category" prefWidth="160" onAction="#onChangeCategory"
             GridPane.columnIndex="1" GridPane.rowIndex="1"/>
     </GridPane>
 </VBox>

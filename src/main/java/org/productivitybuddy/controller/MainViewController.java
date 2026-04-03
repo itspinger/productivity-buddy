@@ -2,11 +2,13 @@ package org.productivitybuddy.controller;
 
 import java.util.ArrayList;
 import javafx.beans.property.ReadOnlyStringWrapper;
+import javafx.beans.property.ReadOnlyObjectWrapper;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
+import javafx.scene.layout.BorderPane;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
@@ -17,6 +19,7 @@ import org.productivitybuddy.model.AnalyticsSummary;
 import org.productivitybuddy.model.Process;
 import org.productivitybuddy.model.ProcessCategory;
 import org.productivitybuddy.registry.ProcessRegistry;
+import org.productivitybuddy.ui.ProcessNameTableCell;
 import org.productivitybuddy.view.FXMLView;
 import org.springframework.context.ApplicationContext;
 import org.springframework.stereotype.Component;
@@ -30,11 +33,13 @@ public class MainViewController implements AnalyticsUpdateListener {
     private final ObservableList<Process> tableData = FXCollections.observableArrayList();
 
     @FXML
+    private BorderPane root;
+    @FXML
     private TextField searchField;
     @FXML
     private TableView<Process> processTable;
     @FXML
-    private TableColumn<Process, String> processNameColumn;
+    private TableColumn<Process, Process> processNameColumn;
     @FXML
     private TableColumn<Process, String> processCategoryColumn;
     @FXML
@@ -71,22 +76,45 @@ public class MainViewController implements AnalyticsUpdateListener {
     private void showFullWidthView() {
         this.splitView.setManaged(false);
         this.splitView.setVisible(false);
-        this.processPanel.setManaged(false);
-        this.processPanel.setVisible(false);
         this.fullWidthHost.setManaged(true);
         this.fullWidthHost.setVisible(true);
     }
 
     @FXML
     private void initialize() {
+        this.initializeTheme();
+        this.initializeTable();
+        this.initializeSearch();
+        this.initializeSelection();
+
+        this.loadDefaultRightPanel();
+        this.showMainView();
+        this.updateTimer.addListener(this);
+    }
+
+    private void initializeTheme() {
+        if (!this.root.getStyleClass().contains("app-root")) {
+            this.root.getStyleClass().add("app-root");
+        }
+
+        if (!this.root.getStyleClass().contains("theme-light")) {
+            this.root.getStyleClass().add("theme-light");
+        }
+    }
+
+    private void initializeTable() {
+        this.processTable.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY_FLEX_LAST_COLUMN);
         this.processNameColumn.setCellValueFactory(cd ->
-            new ReadOnlyStringWrapper(cd.getValue().getDisplayName()));
+            new ReadOnlyObjectWrapper<>(cd.getValue()));
+        this.processNameColumn.setCellFactory(column -> new ProcessNameTableCell());
         this.processCategoryColumn.setCellValueFactory(cd ->
             new ReadOnlyStringWrapper(cd.getValue().getProcessCategory() != null
                                       ? cd.getValue().getProcessCategory().getDisplayName() : ""));
-
         this.filteredData = new FilteredList<>(this.tableData, p -> true);
+        this.processTable.setItems(this.filteredData);
+    }
 
+    private void initializeSearch() {
         this.searchField.textProperty().addListener((obs, oldVal, newVal) ->
             this.filteredData.setPredicate(process -> {
                 if (newVal == null || newVal.isBlank()) {
@@ -97,8 +125,9 @@ public class MainViewController implements AnalyticsUpdateListener {
                 return process.getDisplayName().toLowerCase().contains(lower)
                        || process.getOriginalName().toLowerCase().contains(lower);
             }));
+    }
 
-        this.processTable.setItems(this.filteredData);
+    private void initializeSelection() {
         this.processTable.setOnMouseClicked(event -> {
             if (event.getClickCount() == 1) {
                 final Process selected = this.processTable.getSelectionModel().getSelectedItem();
@@ -107,10 +136,6 @@ public class MainViewController implements AnalyticsUpdateListener {
                 }
             }
         });
-
-        this.loadDefaultRightPanel();
-        this.showMainView();
-        this.updateTimer.addListener(this);
     }
 
     public void showMainView() {

@@ -5,6 +5,7 @@ module org.productivitybuddy.productivitybuddy {
     requires org.controlsfx.controls;
     requires com.dlsc.formsfx;
     requires org.kordamp.ikonli.javafx;
+    requires org.kordamp.ikonli.bootstrapicons;
     requires org.kordamp.bootstrapfx.core;
     requires static lombok;
     requires spring.context;

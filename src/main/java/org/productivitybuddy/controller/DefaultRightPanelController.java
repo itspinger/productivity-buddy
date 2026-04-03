@@ -15,6 +15,7 @@ import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
 import org.productivitybuddy.model.AnalyticsSummary;
 import org.productivitybuddy.model.ProcessCategory;
+import org.productivitybuddy.ui.Icons;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 import org.productivitybuddy.util.TimeHelper;
@@ -53,14 +54,13 @@ public class DefaultRightPanelController {
             }
 
             this.pieInitialized = true;
-            return;
-        }
-
-        int i = 0;
-        for (final Map.Entry<String, Long> entry : newValues.entrySet()) {
-            this.pieData.get(i).setName(entry.getKey());
-            this.pieData.get(i).setPieValue(entry.getValue());
-            i++;
+        } else {
+            int i = 0;
+            for (final Map.Entry<String, Long> entry : newValues.entrySet()) {
+                this.pieData.get(i).setName(entry.getKey());
+                this.pieData.get(i).setPieValue(entry.getValue());
+                i++;
+            }
         }
 
         this.categoryList.getChildren().clear();
@@ -68,15 +68,20 @@ public class DefaultRightPanelController {
             final long seconds = summary.getTimePerCategory().getOrDefault(category, 0L);
 
             final Label label = new Label(category.getDisplayName() + " - " + TimeHelper.toString(seconds));
+            label.getStyleClass().add("analytics-row-label");
+            label.setGraphic(Icons.processCategory(category));
             final Region spacer = new Region();
 
             HBox.setHgrow(spacer, Priority.ALWAYS);
 
             final Button detailsButton = new Button("Details");
+            detailsButton.getStyleClass().add("inline-action-button");
+            detailsButton.setGraphic(Icons.details());
             detailsButton.setOnAction((event) -> this.mainController.openCategoryView(category));
 
             final HBox row = new HBox(10, label, spacer, detailsButton);
             row.setAlignment(Pos.CENTER_LEFT);
+            row.getStyleClass().add("analytics-row");
 
             this.categoryList.getChildren().add(row);
         }

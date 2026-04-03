@@ -7,6 +7,7 @@ import javafx.animation.TranslateTransition;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.Parent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import javafx.stage.FileChooser;
@@ -16,6 +17,7 @@ import org.productivitybuddy.model.Process;
 import org.productivitybuddy.registry.ProcessRegistry;
 import org.productivitybuddy.service.FileExecutorService;
 import org.productivitybuddy.store.ProcessStore;
+import org.productivitybuddy.ui.Icons;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
@@ -29,6 +31,12 @@ public class ToolbarController {
     @FXML
     private HBox toolbar;
     @FXML
+    private Button saveButton;
+    @FXML
+    private Button loadButton;
+    @FXML
+    private Button shutdownButton;
+    @FXML
     private HBox toggleSwitch;
     @FXML
     private Region toggleThumb;
@@ -39,6 +47,17 @@ public class ToolbarController {
         this.registry = registry;
         this.processStore = processStore;
         this.fileExecutorService = fileExecutorService;
+    }
+
+    @FXML
+    private void initialize() {
+        this.saveButton.getStyleClass().add("toolbar-button");
+        this.loadButton.getStyleClass().add("toolbar-button");
+        this.shutdownButton.getStyleClass().addAll("toolbar-button", "button-danger");
+        this.saveButton.setGraphic(Icons.save());
+        this.loadButton.setGraphic(Icons.load());
+        this.shutdownButton.setGraphic(Icons.shutdown());
+        this.syncToggleVisualState();
     }
 
     @FXML
@@ -106,9 +125,26 @@ public class ToolbarController {
         this.darkMode = !this.darkMode;
 
         final TranslateTransition transition = new TranslateTransition(Duration.millis(150), this.toggleThumb);
-        transition.setToX(this.darkMode ? 20 : 0);
+        transition.setToX(this.darkMode ? 16 : 0);
         transition.play();
+        this.syncToggleVisualState();
+        this.applyTheme();
+    }
 
-        this.toggleSwitch.getStyleClass().setAll(this.darkMode ? "toggle-switch-on" : "toggle-switch");
+    private void applyTheme() {
+        if (this.toolbar.getScene() == null) {
+            return;
+        }
+
+        final Parent root = this.toolbar.getScene().getRoot();
+        root.getStyleClass().removeAll("theme-light", "theme-dark");
+        root.getStyleClass().add(this.darkMode ? "theme-dark" : "theme-light");
+    }
+
+    private void syncToggleVisualState() {
+        this.toggleSwitch.getStyleClass().setAll("toggle-switch");
+        if (this.darkMode) {
+            this.toggleSwitch.getStyleClass().add("toggle-switch-on");
+        }
     }
 }

@@ -2,12 +2,16 @@ package org.productivitybuddy.controller;
 
 import java.util.Comparator;
 import java.util.List;
+import javafx.beans.property.ReadOnlyObjectWrapper;
 import javafx.beans.property.ReadOnlyStringWrapper;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.geometry.Pos;
 import javafx.scene.chart.PieChart;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import org.productivitybuddy.model.AnalyticsSummary;
@@ -15,6 +19,8 @@ import org.productivitybuddy.model.Process;
 import org.productivitybuddy.model.ProcessCategory;
 import org.productivitybuddy.model.ProcessInfo;
 import org.productivitybuddy.registry.ProcessRegistry;
+import org.productivitybuddy.ui.ProcessNameTableCell;
+import org.productivitybuddy.ui.Icons;
 import org.productivitybuddy.util.TimeHelper;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
@@ -30,9 +36,11 @@ public class SpecificCategoryController implements AnalyticsUpdateListener {
     @FXML
     private Label headerLabel;
     @FXML
+    private Button backButton;
+    @FXML
     private TableView<Process> categoryTable;
     @FXML
-    private TableColumn<Process, String> nameColumn;
+    private TableColumn<Process, Process> nameColumn;
     @FXML
     private TableColumn<Process, String> resourceColumn;
     @FXML
@@ -52,7 +60,10 @@ public class SpecificCategoryController implements AnalyticsUpdateListener {
 
     @FXML
     private void initialize() {
-        this.nameColumn.setCellValueFactory(cd -> new ReadOnlyStringWrapper(cd.getValue().getDisplayName()));
+        this.backButton.setGraphic(Icons.back());
+        this.categoryTable.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY_FLEX_LAST_COLUMN);
+        this.nameColumn.setCellValueFactory(cd -> new ReadOnlyObjectWrapper<>(cd.getValue()));
+        this.nameColumn.setCellFactory(column -> new ProcessNameTableCell());
 
         this.resourceColumn.setCellValueFactory(cd -> {
             final Process process = cd.getValue();
@@ -63,8 +74,10 @@ public class SpecificCategoryController implements AnalyticsUpdateListener {
 
             return new ReadOnlyStringWrapper(info.getRamUsageKb() + " KB | " + String.format("%.1f%%", info.getCpuUsage()));
         });
+        this.resourceColumn.setCellFactory(column -> this.centeredCell());
 
         this.timeColumn.setCellValueFactory(cd -> new ReadOnlyStringWrapper(TimeHelper.toString(cd.getValue().getTotalTimeSeconds())));
+        this.timeColumn.setCellFactory(column -> this.centeredCell());
 
         this.categoryTable.setItems(this.tableData);
     }
@@ -118,5 +131,17 @@ public class SpecificCategoryController implements AnalyticsUpdateListener {
             .sum();
 
         this.totalTimeLabel.setText(this.category.getDisplayName() + " total time - " + TimeHelper.toString(totalSeconds));
+    }
+
+    private TableCell<Process, String> centeredCell() {
+        return new TableCell<>() {
+            @Override
+            protected void updateItem(String item, boolean empty) {
+                super.updateItem(item, empty);
+                this.setText(empty ? null : item);
+                this.setGraphic(null);
+                this.setAlignment(Pos.CENTER);
+            }
+        };
     }
 }

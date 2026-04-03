@@ -42,6 +42,7 @@ dependencies {
     }
 
     implementation("org.kordamp.ikonli:ikonli-javafx:12.3.1")
+    implementation("org.kordamp.ikonli:ikonli-bootstrapicons-pack:12.3.1")
     implementation("org.kordamp.bootstrapfx:bootstrapfx-core:0.4.0")
     testImplementation("org.junit.jupiter:junit-jupiter-api:${junitVersion}")
     testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:${junitVersion}")

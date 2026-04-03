@@ -1,0 +1,386 @@
+.app-root {
+    -app-bg: #f3f5f9;
+    -app-surface: #fbfcfe;
+    -app-surface-elevated: linear-gradient(to bottom, #ffffff, #f4f7fb);
+    -app-surface-soft: #eef2f8;
+    -app-surface-pressed: #e3e9f3;
+    -app-border: #d8e0ec;
+    -app-border-strong: #c9d3e1;
+    -app-shadow: rgba(27, 39, 51, 0.10);
+    -app-text: #1d2733;
+    -app-text-soft: #667487;
+    -app-text-muted: #8290a3;
+    -app-accent: #2f6fed;
+    -app-accent-soft: #dce8ff;
+    -app-accent-pressed: #1f57c1;
+    -app-danger: #cc4b4b;
+    -app-danger-soft: #fdeaea;
+    -app-table-row-alt: #f7f9fc;
+    -app-table-hover: #ecf2ff;
+    -app-table-selected: #d9e7ff;
+    -app-chart-1: #4f7cff;
+    -app-chart-2: #63b0ff;
+    -app-chart-3: #7bcfa6;
+    -app-chart-4: #f0b35c;
+    -app-chart-5: #d884a6;
+    -fx-background-color: -app-bg;
+    -fx-font-family: "SF Pro Text";
+    -fx-text-fill: -app-text;
+}
+
+.app-root.theme-dark {
+    -app-bg: #151a22;
+    -app-surface: #1c2430;
+    -app-surface-elevated: linear-gradient(to bottom, #242d3a, #1c2430);
+    -app-surface-soft: #202a37;
+    -app-surface-pressed: #263243;
+    -app-border: #303a49;
+    -app-border-strong: #425166;
+    -app-shadow: rgba(0, 0, 0, 0.35);
+    -app-text: #eef3fb;
+    -app-text-soft: #b5c0d1;
+    -app-text-muted: #93a0b3;
+    -app-accent: #6ea3ff;
+    -app-accent-soft: #243452;
+    -app-accent-pressed: #5089eb;
+    -app-danger: #ff7b7b;
+    -app-danger-soft: #43252d;
+    -app-table-row-alt: #1a222e;
+    -app-table-hover: #243247;
+    -app-table-selected: #2b4267;
+    -app-chart-1: #7ca7ff;
+    -app-chart-2: #55c6f7;
+    -app-chart-3: #6ed0a0;
+    -app-chart-4: #f3be6d;
+    -app-chart-5: #dd8eb6;
+}
+
+.app-root .label {
+    -fx-text-fill: -app-text;
+}
+
+.app-root .root-surface {
+    -fx-background-color: transparent;
+}
+
+.app-root .toolbar {
+    -fx-background-color: -app-surface-elevated;
+    -fx-border-color: transparent transparent -app-border transparent;
+    -fx-border-width: 0 0 1 0;
+    -fx-effect: dropshadow(gaussian, -app-shadow, 14, 0.15, 0, 2);
+}
+
+.app-root .toolbar-label {
+    -fx-font-size: 12px;
+    -fx-font-weight: 600;
+    -fx-text-fill: -app-text-soft;
+}
+
+.app-root .button {
+    -fx-background-color: -app-surface;
+    -fx-background-radius: 12;
+    -fx-border-color: -app-border;
+    -fx-border-radius: 12;
+    -fx-border-width: 1;
+    -fx-text-fill: -app-text;
+    -fx-font-size: 13px;
+    -fx-font-weight: 600;
+    -fx-padding: 10 16 10 16;
+    -fx-cursor: hand;
+    -fx-effect: dropshadow(gaussian, -app-shadow, 10, 0.1, 0, 1);
+}
+
+.app-root .button:hover {
+    -fx-background-color: -app-surface-soft;
+    -fx-border-color: -app-border-strong;
+}
+
+.app-root .button:armed {
+    -fx-background-color: -app-surface-pressed;
+}
+
+.app-root .button:focused {
+    -fx-border-color: -app-accent;
+    -fx-effect: dropshadow(gaussian, rgba(47, 111, 237, 0.25), 12, 0.15, 0, 0);
+}
+
+.app-root .button-danger {
+    -fx-background-color: -app-danger-soft;
+    -fx-border-color: transparent;
+    -fx-text-fill: -app-danger;
+}
+
+.app-root .button-danger:hover {
+    -fx-background-color: derive(-app-danger-soft, 6%);
+}
+
+.app-root .toolbar-button {
+    -fx-padding: 9 14 9 14;
+}
+
+.app-root .inline-action-button {
+    -fx-background-color: -app-surface-soft;
+    -fx-effect: none;
+    -fx-padding: 7 12 7 12;
+    -fx-font-size: 12px;
+}
+
+.app-root .icon-button {
+    -fx-background-color: transparent;
+    -fx-border-color: transparent;
+    -fx-background-radius: 999;
+    -fx-border-radius: 999;
+    -fx-padding: 6;
+    -fx-effect: none;
+}
+
+.app-root .icon-button:hover {
+    -fx-background-color: -app-surface-soft;
+}
+
+.app-root .icon-button:armed {
+    -fx-background-color: -app-surface-pressed;
+}
+
+.app-root .toolbar-icon,
+.app-root .button-icon,
+.app-root .nav-icon,
+.app-root .inline-action-icon,
+.app-root .process-icon {
+    -fx-icon-color: -app-text-soft;
+}
+
+.app-root .danger-icon {
+    -fx-icon-color: -app-danger;
+}
+
+.app-root .category-work {
+    -fx-icon-color: #4673d8;
+}
+
+.app-root .category-fun {
+    -fx-icon-color: #d17f44;
+}
+
+.app-root .category-other {
+    -fx-icon-color: #7d68d9;
+}
+
+.app-root .category-uncategorized {
+    -fx-icon-color: -app-text-muted;
+}
+
+.app-root .surface-card {
+    -fx-background-color: -app-surface;
+    -fx-background-radius: 18;
+    -fx-border-color: -app-border;
+    -fx-border-radius: 18;
+    -fx-border-width: 1;
+    -fx-effect: dropshadow(gaussian, -app-shadow, 18, 0.12, 0, 4);
+}
+
+.app-root .search-field {
+    -fx-background-color: -app-surface;
+    -fx-background-radius: 12;
+    -fx-border-color: -app-border;
+    -fx-border-radius: 12;
+    -fx-border-width: 1;
+    -fx-text-fill: -app-text;
+    -fx-prompt-text-fill: -app-text-muted;
+    -fx-padding: 10 12 10 12;
+}
+
+.app-root .view-title {
+    -fx-font-size: 22px;
+    -fx-font-weight: 700;
+}
+
+.app-root .section-title {
+    -fx-font-size: 14px;
+    -fx-font-weight: 700;
+}
+
+.app-root .body-title {
+    -fx-font-size: 16px;
+    -fx-font-weight: 600;
+}
+
+.app-root .body-subtitle {
+    -fx-font-size: 15px;
+    -fx-text-fill: -app-text-soft;
+}
+
+.app-root .metric-label {
+    -fx-font-size: 15px;
+    -fx-font-weight: 600;
+}
+
+.app-root .secondary-text {
+    -fx-font-size: 12px;
+    -fx-text-fill: -app-text-muted;
+}
+
+.app-root .summary-row {
+    -fx-background-color: -app-surface-soft;
+    -fx-background-radius: 14;
+    -fx-padding: 10 12 10 12;
+}
+
+.app-root .process-name-label {
+    -fx-font-size: 13px;
+    -fx-text-fill: -app-text;
+}
+
+.app-root .table-view {
+    -fx-background-color: transparent;
+    -fx-border-color: -app-border;
+    -fx-border-radius: 14;
+    -fx-background-radius: 14;
+    -fx-padding: 1;
+}
+
+.app-root .table-view .column-header-background {
+    -fx-background-color: -app-surface-soft;
+    -fx-background-radius: 13 13 0 0;
+}
+
+.app-root .table-view .column-header {
+    -fx-background-color: transparent;
+    -fx-border-color: transparent transparent -app-border transparent;
+}
+
+.app-root .table-view .column-header .label {
+    -fx-text-fill: -app-text-soft;
+    -fx-font-size: 12px;
+    -fx-font-weight: 700;
+    -fx-padding: 8 6 8 6;
+}
+
+.app-root .table-view .filler {
+    -fx-background-color: -app-surface-soft;
+}
+
+.app-root .table-row-cell {
+    -fx-background-color: -app-surface;
+    -fx-border-color: transparent;
+    -fx-cell-size: 42px;
+}
+
+.app-root .table-row-cell:odd {
+    -fx-background-color: -app-table-row-alt;
+}
+
+.app-root .table-row-cell:hover {
+    -fx-background-color: -app-table-hover;
+}
+
+.app-root .table-row-cell:selected {
+    -fx-background-color: -app-table-selected;
+}
+
+.app-root .table-row-cell:selected .text,
+.app-root .table-row-cell:selected .label {
+    -fx-fill: -app-text;
+    -fx-text-fill: -app-text;
+}
+
+.app-root .table-cell {
+    -fx-border-color: transparent;
+    -fx-padding: 0 10 0 10;
+    -fx-text-fill: -app-text;
+    -fx-alignment: CENTER-LEFT;
+}
+
+.app-root .table-cell .text {
+    -fx-fill: -app-text;
+}
+
+.app-root .table-row-cell:hover .text,
+.app-root .table-row-cell:hover .label,
+.app-root .table-row-cell:focused .text,
+.app-root .table-row-cell:focused .label,
+.app-root .table-row-cell:selected .table-cell .text,
+.app-root .table-row-cell:selected .table-cell .label {
+    -fx-fill: -app-text;
+    -fx-text-fill: -app-text;
+}
+
+.app-root .table-view .virtual-flow .scroll-bar:vertical,
+.app-root .table-view .virtual-flow .scroll-bar:horizontal {
+    -fx-background-color: transparent;
+}
+
+.app-root .table-view .thumb {
+    -fx-background-color: derive(-app-border-strong, 8%);
+    -fx-background-radius: 999;
+}
+
+.app-root .analytics-list {
+    -fx-padding: 2 0 0 0;
+}
+
+.app-root .analytics-row {
+    -fx-background-color: -app-surface-soft;
+    -fx-background-radius: 14;
+    -fx-border-color: -app-border;
+    -fx-border-radius: 14;
+    -fx-padding: 10 12 10 12;
+}
+
+.app-root .analytics-row-label {
+    -fx-font-size: 13px;
+    -fx-font-weight: 600;
+}
+
+.app-root .chart {
+    -fx-background-color: transparent;
+    -fx-padding: 0;
+}
+
+.app-root .chart-title {
+    -fx-text-fill: -app-text;
+    -fx-font-size: 16px;
+    -fx-font-weight: 700;
+}
+
+.app-root .chart-pie-label {
+    -fx-fill: -app-text-soft;
+    -fx-font-size: 11px;
+}
+
+.app-root .default-color0.chart-pie { -fx-pie-color: -app-chart-1; }
+.app-root .default-color1.chart-pie { -fx-pie-color: -app-chart-2; }
+.app-root .default-color2.chart-pie { -fx-pie-color: -app-chart-3; }
+.app-root .default-color3.chart-pie { -fx-pie-color: -app-chart-4; }
+.app-root .default-color4.chart-pie { -fx-pie-color: -app-chart-5; }
+.app-root .default-color5.chart-pie { -fx-pie-color: derive(-app-chart-1, -14%); }
+.app-root .default-color6.chart-pie { -fx-pie-color: derive(-app-chart-2, -12%); }
+.app-root .default-color7.chart-pie { -fx-pie-color: derive(-app-chart-3, -10%); }
+.app-root .default-color8.chart-pie { -fx-pie-color: derive(-app-chart-4, -10%); }
+.app-root .default-color9.chart-pie { -fx-pie-color: derive(-app-chart-5, -10%); }
+
+.app-root .toggle-switch {
+    -fx-background-color: #d4d9e1;
+    -fx-background-radius: 999;
+    -fx-border-color: transparent;
+    -fx-cursor: hand;
+    -fx-effect: none;
+}
+
+.app-root .toggle-switch.toggle-switch-on {
+    -fx-background-color: #2f80ed;
+}
+
+.app-root .toggle-thumb {
+    -fx-background-color: white;
+    -fx-background-radius: 999;
+    -fx-effect: none;
+}
+
+.app-root.theme-dark .toggle-switch {
+    -fx-background-color: #5a6471;
+}
+
+.app-root.theme-dark .toggle-switch.toggle-switch-on {
+    -fx-background-color: #2f80ed;
+}
