@@ -40,13 +40,13 @@ public class ProcessStateServiceImpl implements ProcessStateService {
     }
 
     @Override
-    public void applyLoadedProcesses(List<Process> loadedProcesses) {
+    public void loadState(List<Process> loadedProcesses) {
         this.processScannerService.replaceSavedProcesses(loadedProcesses);
         this.applySavedMetadata();
     }
 
     @Override
-    public void commitSavedSnapshot(List<Process> persistedProcesses) {
+    public void commitState(List<Process> persistedProcesses) {
         this.processScannerService.replaceSavedProcesses(persistedProcesses);
         this.applySavedMetadata();
 

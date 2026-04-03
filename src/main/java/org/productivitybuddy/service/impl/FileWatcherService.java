@@ -104,7 +104,7 @@ public class FileWatcherService implements Lifecycle {
     private void applyExternalChanges() {
         try {
             final List<Process> loaded = this.processStore.loadAll();
-            this.processStateService.applyLoadedProcesses(loaded);
+            this.processStateService.loadState(loaded);
 
             log.info("Applied external changes from {}", this.config.getMappingFile());
         } catch (Exception e) {

@@ -44,11 +44,11 @@ public interface ProcessStateService {
      * Updates the saved processes map and applies metadata (alias, category, freeze)
      * to active instances. Session time is not affected.
      */
-    void applyLoadedProcesses(List<Process> loadedProcesses);
+    void loadState(List<Process> loadedProcesses);
 
     /**
      * Called after Save. Updates the saved processes map and resets session time to 0,
      * because the saved snapshot already includes it.
      */
-    void commitSavedSnapshot(List<Process> persistedProcesses);
+    void commitState(List<Process> persistedProcesses);
 }

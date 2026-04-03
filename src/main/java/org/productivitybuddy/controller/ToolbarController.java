@@ -85,7 +85,7 @@ public class ToolbarController {
             final List<Process> snapshot = this.processAggregationService.buildProcessSnapshot();
             this.processStore.saveAll(snapshot, file.toPath());
             if (this.isPrimaryMappingFile(file.toPath())) {
-                Platform.runLater(() -> this.processStateService.commitSavedSnapshot(snapshot));
+                Platform.runLater(() -> this.processStateService.commitState(snapshot));
             }
         });
     }
@@ -105,7 +105,7 @@ public class ToolbarController {
 
         this.fileExecutorService.submit(() -> {
             final List<Process> loaded = this.processStore.loadAll(file.toPath());
-            Platform.runLater(() -> this.processStateService.applyLoadedProcesses(loaded));
+            Platform.runLater(() -> this.processStateService.loadState(loaded));
         });
     }
 
@@ -121,6 +121,7 @@ public class ToolbarController {
         final TranslateTransition transition = new TranslateTransition(Duration.millis(150), this.toggleThumb);
         transition.setToX(this.darkMode ? 16 : 0);
         transition.play();
+
         this.syncToggleVisualState();
         this.applyTheme();
     }
