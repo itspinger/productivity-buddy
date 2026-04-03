@@ -4,49 +4,49 @@
       "originalName": "QuickLookUIService",
       "processCategory": "UNCATEGORIZED",
       "trackingFrozen": false,
-      "totalTimeSeconds": 69
+      "totalTimeSeconds": 5523
     },
     {
       "originalName": "studentd",
       "processCategory": "UNCATEGORIZED",
       "trackingFrozen": false,
-      "totalTimeSeconds": 450
+      "totalTimeSeconds": 28986
     },
     {
       "originalName": "PlugInLibraryService",
       "processCategory": "UNCATEGORIZED",
       "trackingFrozen": false,
-      "totalTimeSeconds": 69
+      "totalTimeSeconds": 207
     },
     {
       "originalName": "chrome_crashpad_handler",
       "processCategory": "UNCATEGORIZED",
       "trackingFrozen": false,
-      "totalTimeSeconds": 450
+      "totalTimeSeconds": 14085
     },
     {
       "originalName": "DockHelper",
       "processCategory": "UNCATEGORIZED",
       "trackingFrozen": false,
-      "totalTimeSeconds": 450
+      "totalTimeSeconds": 28986
     },
     {
       "originalName": "CSExattrCryptoService",
       "processCategory": "UNCATEGORIZED",
       "trackingFrozen": false,
-      "totalTimeSeconds": 69
+      "totalTimeSeconds": 138
     },
     {
       "originalName": "CommCenter",
       "processCategory": "UNCATEGORIZED",
       "trackingFrozen": false,
-      "totalTimeSeconds": 450
+      "totalTimeSeconds": 28986
     },
     {
       "originalName": "ctkahp",
       "processCategory": "UNCATEGORIZED",
       "trackingFrozen": false,
-      "totalTimeSeconds": 450
+      "totalTimeSeconds": 28986
     },
     {
       "originalName": "ContextService",
@@ -58,7 +58,7 @@
       "originalName": "Google Chrome Helper",
       "processCategory": "UNCATEGORIZED",
       "trackingFrozen": false,
-      "totalTimeSeconds": 450
+      "totalTimeSeconds": 14085
     },
     {
       "originalName": "Google Chrome Helper",
@@ -70,44 +70,43 @@
       "originalName": "pkd",
       "processCategory": "UNCATEGORIZED",
       "trackingFrozen": false,
-      "totalTimeSeconds": 450
+      "totalTimeSeconds": 28986
     },
     {
       "originalName": "mdworker_shared",
       "processCategory": "UNCATEGORIZED",
       "trackingFrozen": false,
-      "totalTimeSeconds": 63
+      "totalTimeSeconds": 6975
     },
     {
       "originalName": "maild",
       "processCategory": "UNCATEGORIZED",
       "trackingFrozen": false,
-      "totalTimeSeconds": 450
+      "totalTimeSeconds": 28986
     },
     {
       "originalName": "CMFSyncAgent",
       "processCategory": "UNCATEGORIZED",
       "trackingFrozen": false,
-      "totalTimeSeconds": 450
+      "totalTimeSeconds": 28986
     },
     {
       "originalName": "businessservicesd",
       "processCategory": "UNCATEGORIZED",
       "trackingFrozen": false,
-      "totalTimeSeconds": 450
+      "totalTimeSeconds": 28986
     },
     {
       "originalName": "MessagesBlastDoorService",
       "processCategory": "UNCATEGORIZED",
       "trackingFrozen": false,
-      "totalTimeSeconds": 450
+      "totalTimeSeconds": 28986
     },
     {
       "originalName": "Google Chrome Helper (Renderer)",
-      "aliasName": "Helper For Google",
-      "processCategory": "FUN",
+      "processCategory": "UNCATEGORIZED",
       "trackingFrozen": false,
-      "totalTimeSeconds": 450
+      "totalTimeSeconds": 215883
     },
     {
       "originalName": "Google Chrome Helper (Renderer)",
@@ -119,7 +118,7 @@
       "originalName": "zsh",
       "processCategory": "UNCATEGORIZED",
       "trackingFrozen": false,
-      "totalTimeSeconds": 450
+      "totalTimeSeconds": 30447
     },
     {
       "originalName": "Google Chrome Helper (Renderer)",
@@ -149,7 +148,7 @@
       "originalName": "diagnostics_agent",
       "processCategory": "UNCATEGORIZED",
       "trackingFrozen": false,
-      "totalTimeSeconds": 450
+      "totalTimeSeconds": 28986
     },
     {
       "originalName": "Google Chrome Helper (Renderer)",
@@ -161,19 +160,19 @@
       "originalName": "StocksWidget",
       "processCategory": "UNCATEGORIZED",
       "trackingFrozen": false,
-      "totalTimeSeconds": 450
+      "totalTimeSeconds": 28986
     },
     {
       "originalName": "dmd",
       "processCategory": "UNCATEGORIZED",
       "trackingFrozen": false,
-      "totalTimeSeconds": 450
+      "totalTimeSeconds": 28986
     },
     {
       "originalName": "iconservicesagent",
       "processCategory": "UNCATEGORIZED",
       "trackingFrozen": false,
-      "totalTimeSeconds": 450
+      "totalTimeSeconds": 28986
     },
     {
       "originalName": "Google Chrome Helper (Renderer)",
@@ -185,7 +184,7 @@
       "originalName": "goland",
       "processCategory": "UNCATEGORIZED",
       "trackingFrozen": false,
-      "totalTimeSeconds": 450
+      "totalTimeSeconds": 28986
     },
     {
       "originalName": "Google Chrome Helper",
@@ -197,43 +196,43 @@
       "originalName": "disclaimer",
       "processCategory": "UNCATEGORIZED",
       "trackingFrozen": false,
-      "totalTimeSeconds": 450
+      "totalTimeSeconds": 5904
     },
     {
       "originalName": "commerce",
       "processCategory": "UNCATEGORIZED",
       "trackingFrozen": false,
-      "totalTimeSeconds": 450
+      "totalTimeSeconds": 28986
     },
     {
       "originalName": "claude",
       "processCategory": "UNCATEGORIZED",
       "trackingFrozen": false,
-      "totalTimeSeconds": 450
+      "totalTimeSeconds": 5904
     },
     {
       "originalName": "mdwrite",
       "processCategory": "UNCATEGORIZED",
       "trackingFrozen": false,
-      "totalTimeSeconds": 450
+      "totalTimeSeconds": 28986
     },
     {
       "originalName": "cloudd",
       "processCategory": "UNCATEGORIZED",
       "trackingFrozen": false,
-      "totalTimeSeconds": 450
+      "totalTimeSeconds": 28986
     },
     {
       "originalName": "Postman",
       "processCategory": "UNCATEGORIZED",
       "trackingFrozen": false,
-      "totalTimeSeconds": 450
+      "totalTimeSeconds": 28986
     },
     {
       "originalName": "talagentd",
       "processCategory": "UNCATEGORIZED",
       "trackingFrozen": false,
-      "totalTimeSeconds": 450
+      "totalTimeSeconds": 28986
     },
     {
       "originalName": "chrome_crashpad_handler",
@@ -257,37 +256,37 @@
       "originalName": "Postman Helper (GPU)",
       "processCategory": "UNCATEGORIZED",
       "trackingFrozen": false,
-      "totalTimeSeconds": 450
+      "totalTimeSeconds": 28986
     },
     {
       "originalName": "icdd",
       "processCategory": "UNCATEGORIZED",
       "trackingFrozen": false,
-      "totalTimeSeconds": 450
+      "totalTimeSeconds": 28986
     },
     {
       "originalName": "Postman Helper",
       "processCategory": "UNCATEGORIZED",
       "trackingFrozen": false,
-      "totalTimeSeconds": 450
+      "totalTimeSeconds": 5904
     },
     {
       "originalName": "GlobalProtect",
       "processCategory": "UNCATEGORIZED",
       "trackingFrozen": false,
-      "totalTimeSeconds": 450
+      "totalTimeSeconds": 28986
     },
     {
       "originalName": "Postman Helper (Renderer)",
       "processCategory": "UNCATEGORIZED",
       "trackingFrozen": false,
-      "totalTimeSeconds": 450
+      "totalTimeSeconds": 28986
     },
     {
       "originalName": "loginwindow",
       "processCategory": "UNCATEGORIZED",
       "trackingFrozen": false,
-      "totalTimeSeconds": 450
+      "totalTimeSeconds": 28986
     },
     {
       "originalName": "Postman Helper",
@@ -299,37 +298,37 @@
       "originalName": "idea",
       "processCategory": "UNCATEGORIZED",
       "trackingFrozen": false,
-      "totalTimeSeconds": 450
+      "totalTimeSeconds": 28986
     },
     {
       "originalName": "AirPlayUIAgent",
       "processCategory": "UNCATEGORIZED",
       "trackingFrozen": false,
-      "totalTimeSeconds": 450
+      "totalTimeSeconds": 28986
     },
     {
       "originalName": "VTDecoderXPCService",
       "processCategory": "UNCATEGORIZED",
       "trackingFrozen": false,
-      "totalTimeSeconds": 450
+      "totalTimeSeconds": 5904
     },
     {
       "originalName": "TextInputMenuAgent",
       "processCategory": "UNCATEGORIZED",
       "trackingFrozen": false,
-      "totalTimeSeconds": 450
+      "totalTimeSeconds": 28986
     },
     {
       "originalName": "callservicesd",
       "processCategory": "UNCATEGORIZED",
       "trackingFrozen": false,
-      "totalTimeSeconds": 450
+      "totalTimeSeconds": 28986
     },
     {
       "originalName": "CoreServicesUIAgent",
       "processCategory": "UNCATEGORIZED",
       "trackingFrozen": false,
-      "totalTimeSeconds": 450
+      "totalTimeSeconds": 28986
     },
     {
       "originalName": "intelligencecontextd",
@@ -341,7 +340,7 @@
       "originalName": "Stats",
       "processCategory": "UNCATEGORIZED",
       "trackingFrozen": false,
-      "totalTimeSeconds": 450
+      "totalTimeSeconds": 28986
     },
     {
       "originalName": "Google Chrome Helper (Renderer)",
@@ -353,49 +352,49 @@
       "originalName": "SAExtensionOrchestrator",
       "processCategory": "UNCATEGORIZED",
       "trackingFrozen": false,
-      "totalTimeSeconds": 450
+      "totalTimeSeconds": 900
     },
     {
       "originalName": "OpenVPN Connect",
       "processCategory": "UNCATEGORIZED",
       "trackingFrozen": false,
-      "totalTimeSeconds": 450
+      "totalTimeSeconds": 28986
     },
     {
       "originalName": "DiskUnmountWatcher",
       "processCategory": "UNCATEGORIZED",
       "trackingFrozen": false,
-      "totalTimeSeconds": 450
+      "totalTimeSeconds": 28986
     },
     {
       "originalName": "extensionkitservice",
       "processCategory": "UNCATEGORIZED",
       "trackingFrozen": false,
-      "totalTimeSeconds": 450
+      "totalTimeSeconds": 4077
     },
     {
       "originalName": "IFTelemetrySELFIngestor",
       "processCategory": "UNCATEGORIZED",
       "trackingFrozen": false,
-      "totalTimeSeconds": 450
+      "totalTimeSeconds": 900
     },
     {
       "originalName": "BiomeSELFIngestor",
       "processCategory": "UNCATEGORIZED",
       "trackingFrozen": false,
-      "totalTimeSeconds": 450
+      "totalTimeSeconds": 900
     },
     {
       "originalName": "GMSSELFIngestor",
       "processCategory": "UNCATEGORIZED",
       "trackingFrozen": false,
-      "totalTimeSeconds": 450
+      "totalTimeSeconds": 900
     },
     {
       "originalName": "IFTranscriptSELFIngestor",
       "processCategory": "UNCATEGORIZED",
       "trackingFrozen": false,
-      "totalTimeSeconds": 450
+      "totalTimeSeconds": 900
     },
     {
       "originalName": "Google Chrome Helper (Renderer)",
@@ -407,13 +406,13 @@
       "originalName": "CloudTelemetryService",
       "processCategory": "UNCATEGORIZED",
       "trackingFrozen": false,
-      "totalTimeSeconds": 450
+      "totalTimeSeconds": 43386
     },
     {
       "originalName": "Claude Helper",
       "processCategory": "UNCATEGORIZED",
       "trackingFrozen": false,
-      "totalTimeSeconds": 450
+      "totalTimeSeconds": 8631
     },
     {
       "originalName": "Google Chrome Helper (Renderer)",
@@ -425,19 +424,19 @@
       "originalName": "Claude Helper (Plugin)",
       "processCategory": "UNCATEGORIZED",
       "trackingFrozen": false,
-      "totalTimeSeconds": 450
+      "totalTimeSeconds": 28986
     },
     {
       "originalName": "OpenVPN Connect Helper (GPU)",
       "processCategory": "UNCATEGORIZED",
       "trackingFrozen": false,
-      "totalTimeSeconds": 450
+      "totalTimeSeconds": 28986
     },
     {
       "originalName": "OpenVPN Connect Helper",
       "processCategory": "UNCATEGORIZED",
       "trackingFrozen": false,
-      "totalTimeSeconds": 450
+      "totalTimeSeconds": 28986
     },
     {
       "originalName": "Google Chrome Helper (Renderer)",
@@ -455,13 +454,13 @@
       "originalName": "swcd",
       "processCategory": "UNCATEGORIZED",
       "trackingFrozen": false,
-      "totalTimeSeconds": 450
+      "totalTimeSeconds": 900
     },
     {
       "originalName": "OpenVPN Connect Helper (Renderer)",
       "processCategory": "UNCATEGORIZED",
       "trackingFrozen": false,
-      "totalTimeSeconds": 450
+      "totalTimeSeconds": 28986
     },
     {
       "originalName": "Google Chrome Helper (Renderer)",
@@ -473,13 +472,13 @@
       "originalName": "deleted",
       "processCategory": "UNCATEGORIZED",
       "trackingFrozen": false,
-      "totalTimeSeconds": 450
+      "totalTimeSeconds": 28986
     },
     {
       "originalName": "datagrip",
       "processCategory": "UNCATEGORIZED",
       "trackingFrozen": false,
-      "totalTimeSeconds": 450
+      "totalTimeSeconds": 28986
     },
     {
       "originalName": "Google Chrome Helper (Renderer)",
@@ -491,7 +490,7 @@
       "originalName": "managedcorespotlightd",
       "processCategory": "UNCATEGORIZED",
       "trackingFrozen": false,
-      "totalTimeSeconds": 450
+      "totalTimeSeconds": 28986
     },
     {
       "originalName": "Google Chrome Helper (Renderer)",
@@ -503,43 +502,43 @@
       "originalName": "storeuid",
       "processCategory": "UNCATEGORIZED",
       "trackingFrozen": false,
-      "totalTimeSeconds": 450
+      "totalTimeSeconds": 28986
     },
     {
       "originalName": "assistantd",
       "processCategory": "UNCATEGORIZED",
       "trackingFrozen": false,
-      "totalTimeSeconds": 450
+      "totalTimeSeconds": 28986
     },
     {
       "originalName": "ShipIt",
       "processCategory": "UNCATEGORIZED",
       "trackingFrozen": false,
-      "totalTimeSeconds": 450
+      "totalTimeSeconds": 5904
     },
     {
       "originalName": "peopled",
       "processCategory": "UNCATEGORIZED",
       "trackingFrozen": false,
-      "totalTimeSeconds": 450
+      "totalTimeSeconds": 28986
     },
     {
       "originalName": "SetStoreUpdateService",
       "processCategory": "UNCATEGORIZED",
       "trackingFrozen": false,
-      "totalTimeSeconds": 450
+      "totalTimeSeconds": 900
     },
     {
       "originalName": "universalAccessAuthWarn",
       "processCategory": "UNCATEGORIZED",
       "trackingFrozen": false,
-      "totalTimeSeconds": 450
+      "totalTimeSeconds": 28986
     },
     {
       "originalName": "proactived",
       "processCategory": "UNCATEGORIZED",
       "trackingFrozen": false,
-      "totalTimeSeconds": 450
+      "totalTimeSeconds": 28986
     },
     {
       "originalName": "mdworker_shared",
@@ -623,13 +622,13 @@
       "originalName": "java",
       "processCategory": "UNCATEGORIZED",
       "trackingFrozen": false,
-      "totalTimeSeconds": 450
+      "totalTimeSeconds": 8631
     },
     {
       "originalName": "spotlightknowledged",
       "processCategory": "UNCATEGORIZED",
       "trackingFrozen": false,
-      "totalTimeSeconds": 450
+      "totalTimeSeconds": 5904
     },
     {
       "originalName": "Google Chrome Helper (Renderer)",
@@ -647,7 +646,7 @@
       "originalName": "ctkd",
       "processCategory": "UNCATEGORIZED",
       "trackingFrozen": false,
-      "totalTimeSeconds": 450
+      "totalTimeSeconds": 900
     },
     {
       "originalName": "Google Chrome Helper (Renderer)",
@@ -671,13 +670,13 @@
       "originalName": "Terminal",
       "processCategory": "UNCATEGORIZED",
       "trackingFrozen": false,
-      "totalTimeSeconds": 450
+      "totalTimeSeconds": 28986
     },
     {
       "originalName": "fsnotifier",
       "processCategory": "UNCATEGORIZED",
       "trackingFrozen": false,
-      "totalTimeSeconds": 450
+      "totalTimeSeconds": 8631
     },
     {
       "originalName": "Google Chrome Helper (Renderer)",
@@ -767,7 +766,7 @@
       "originalName": "routined",
       "processCategory": "UNCATEGORIZED",
       "trackingFrozen": false,
-      "totalTimeSeconds": 450
+      "totalTimeSeconds": 28986
     },
     {
       "originalName": "Google Chrome Helper (Renderer)",
@@ -779,13 +778,13 @@
       "originalName": "mbuseragent",
       "processCategory": "UNCATEGORIZED",
       "trackingFrozen": false,
-      "totalTimeSeconds": 450
+      "totalTimeSeconds": 28986
     },
     {
       "originalName": "PasswordBreachAgent",
       "processCategory": "UNCATEGORIZED",
       "trackingFrozen": false,
-      "totalTimeSeconds": 450
+      "totalTimeSeconds": 28986
     },
     {
       "originalName": "parsecd",
@@ -797,25 +796,25 @@
       "originalName": "IMDPersistenceAgent",
       "processCategory": "UNCATEGORIZED",
       "trackingFrozen": false,
-      "totalTimeSeconds": 450
+      "totalTimeSeconds": 900
     },
     {
       "originalName": "audioaccessoryd",
       "processCategory": "UNCATEGORIZED",
       "trackingFrozen": false,
-      "totalTimeSeconds": 450
+      "totalTimeSeconds": 28986
     },
     {
       "originalName": "WeatherWidget",
       "processCategory": "UNCATEGORIZED",
       "trackingFrozen": false,
-      "totalTimeSeconds": 450
+      "totalTimeSeconds": 28986
     },
     {
       "originalName": "pbs",
       "processCategory": "UNCATEGORIZED",
       "trackingFrozen": false,
-      "totalTimeSeconds": 450
+      "totalTimeSeconds": 900
     },
     {
       "originalName": "fsnotifier",
@@ -827,13 +826,13 @@
       "originalName": "copilot-language-server",
       "processCategory": "UNCATEGORIZED",
       "trackingFrozen": false,
-      "totalTimeSeconds": 450
+      "totalTimeSeconds": 8631
     },
     {
       "originalName": "ReportCrash",
       "processCategory": "UNCATEGORIZED",
       "trackingFrozen": false,
-      "totalTimeSeconds": 438
+      "totalTimeSeconds": 876
     },
     {
       "originalName": "fsnotifier",
@@ -851,19 +850,19 @@
       "originalName": "cef_server",
       "processCategory": "UNCATEGORIZED",
       "trackingFrozen": false,
-      "totalTimeSeconds": 450
+      "totalTimeSeconds": 5904
     },
     {
       "originalName": "cef_server Helper (GPU)",
       "processCategory": "UNCATEGORIZED",
       "trackingFrozen": false,
-      "totalTimeSeconds": 450
+      "totalTimeSeconds": 5904
     },
     {
       "originalName": "cef_server Helper",
       "processCategory": "UNCATEGORIZED",
       "trackingFrozen": false,
-      "totalTimeSeconds": 450
+      "totalTimeSeconds": 11358
     },
     {
       "originalName": "copilot-language-server",
@@ -899,19 +898,19 @@
       "originalName": "full-line-inference",
       "processCategory": "UNCATEGORIZED",
       "trackingFrozen": false,
-      "totalTimeSeconds": 450
+      "totalTimeSeconds": 5904
     },
     {
       "originalName": "distnoted",
       "processCategory": "UNCATEGORIZED",
       "trackingFrozen": false,
-      "totalTimeSeconds": 450
+      "totalTimeSeconds": 28986
     },
     {
       "originalName": "iPhone Mirroring",
       "processCategory": "UNCATEGORIZED",
       "trackingFrozen": false,
-      "totalTimeSeconds": 450
+      "totalTimeSeconds": 28986
     },
     {
       "originalName": "zsh",
@@ -923,37 +922,37 @@
       "originalName": "secinitd",
       "processCategory": "UNCATEGORIZED",
       "trackingFrozen": false,
-      "totalTimeSeconds": 450
+      "totalTimeSeconds": 28986
     },
     {
       "originalName": "cfprefsd",
       "processCategory": "UNCATEGORIZED",
       "trackingFrozen": false,
-      "totalTimeSeconds": 450
+      "totalTimeSeconds": 28986
     },
     {
       "originalName": "bird",
       "processCategory": "UNCATEGORIZED",
       "trackingFrozen": false,
-      "totalTimeSeconds": 450
+      "totalTimeSeconds": 28986
     },
     {
       "originalName": "csnameddatad",
       "processCategory": "UNCATEGORIZED",
       "trackingFrozen": false,
-      "totalTimeSeconds": 450
+      "totalTimeSeconds": 28986
     },
     {
       "originalName": "com.apple.siri.embeddedspeech",
       "processCategory": "UNCATEGORIZED",
       "trackingFrozen": false,
-      "totalTimeSeconds": 450
+      "totalTimeSeconds": 14586
     },
     {
       "originalName": "generativeexperiencesd",
       "processCategory": "UNCATEGORIZED",
       "trackingFrozen": false,
-      "totalTimeSeconds": 450
+      "totalTimeSeconds": 14586
     },
     {
       "originalName": "extensionkitservice",
@@ -965,19 +964,19 @@
       "originalName": "OfficeThumbnailExtension",
       "processCategory": "UNCATEGORIZED",
       "trackingFrozen": false,
-      "totalTimeSeconds": 450
+      "totalTimeSeconds": 900
     },
     {
       "originalName": "ContainerMetadataExtractor",
       "processCategory": "UNCATEGORIZED",
       "trackingFrozen": false,
-      "totalTimeSeconds": 450
+      "totalTimeSeconds": 14586
     },
     {
       "originalName": "com.apple.quicklook.ThumbnailsAgent",
       "processCategory": "UNCATEGORIZED",
       "trackingFrozen": false,
-      "totalTimeSeconds": 450
+      "totalTimeSeconds": 28986
     },
     {
       "originalName": "zsh",
@@ -989,19 +988,19 @@
       "originalName": "lsd",
       "processCategory": "UNCATEGORIZED",
       "trackingFrozen": false,
-      "totalTimeSeconds": 450
+      "totalTimeSeconds": 28986
     },
     {
       "originalName": "iCloudNotificationAgent",
       "processCategory": "UNCATEGORIZED",
       "trackingFrozen": false,
-      "totalTimeSeconds": 450
+      "totalTimeSeconds": 28986
     },
     {
       "originalName": "appleaccountd",
       "processCategory": "UNCATEGORIZED",
       "trackingFrozen": false,
-      "totalTimeSeconds": 450
+      "totalTimeSeconds": 28986
     },
     {
       "originalName": "Google Chrome Helper (Renderer)",
@@ -1019,13 +1018,13 @@
       "originalName": "followupd",
       "processCategory": "UNCATEGORIZED",
       "trackingFrozen": false,
-      "totalTimeSeconds": 450
+      "totalTimeSeconds": 28986
     },
     {
       "originalName": "com.apple.appkit.xpc.openAndSavePanelService",
       "processCategory": "UNCATEGORIZED",
       "trackingFrozen": false,
-      "totalTimeSeconds": 450
+      "totalTimeSeconds": 1368
     },
     {
       "originalName": "QuickLookUIService",
@@ -1043,7 +1042,7 @@
       "originalName": "trustd",
       "processCategory": "UNCATEGORIZED",
       "trackingFrozen": false,
-      "totalTimeSeconds": 450
+      "totalTimeSeconds": 28986
     },
     {
       "originalName": "Google Chrome Helper (Renderer)",
@@ -1061,13 +1060,13 @@
       "originalName": "UniversalControl",
       "processCategory": "UNCATEGORIZED",
       "trackingFrozen": false,
-      "totalTimeSeconds": 450
+      "totalTimeSeconds": 28986
     },
     {
       "originalName": "SidecarRelay",
       "processCategory": "UNCATEGORIZED",
       "trackingFrozen": false,
-      "totalTimeSeconds": 450
+      "totalTimeSeconds": 28986
     },
     {
       "originalName": "BTLEServerAgent",
@@ -1085,19 +1084,19 @@
       "originalName": "SiriNCService",
       "processCategory": "UNCATEGORIZED",
       "trackingFrozen": false,
-      "totalTimeSeconds": 450
+      "totalTimeSeconds": 28986
     },
     {
       "originalName": "appstorecomponentsd",
       "processCategory": "UNCATEGORIZED",
       "trackingFrozen": false,
-      "totalTimeSeconds": 450
+      "totalTimeSeconds": 28986
     },
     {
       "originalName": "System Settings",
       "processCategory": "UNCATEGORIZED",
       "trackingFrozen": false,
-      "totalTimeSeconds": 450
+      "totalTimeSeconds": 28986
     },
     {
       "originalName": "zsh",
@@ -1109,19 +1108,19 @@
       "originalName": "AppleIDSettings",
       "processCategory": "UNCATEGORIZED",
       "trackingFrozen": false,
-      "totalTimeSeconds": 450
+      "totalTimeSeconds": 28986
     },
     {
       "originalName": "GeneralSettings",
       "processCategory": "UNCATEGORIZED",
       "trackingFrozen": false,
-      "totalTimeSeconds": 450
+      "totalTimeSeconds": 28986
     },
     {
       "originalName": "LoginItems",
       "processCategory": "UNCATEGORIZED",
       "trackingFrozen": false,
-      "totalTimeSeconds": 450
+      "totalTimeSeconds": 28986
     },
     {
       "originalName": "Google Chrome Helper (Renderer)",
@@ -1133,25 +1132,25 @@
       "originalName": "DefaultExtensionEnablement",
       "processCategory": "UNCATEGORIZED",
       "trackingFrozen": false,
-      "totalTimeSeconds": 450
+      "totalTimeSeconds": 28986
     },
     {
       "originalName": "ContextStoreAgent",
       "processCategory": "UNCATEGORIZED",
       "trackingFrozen": false,
-      "totalTimeSeconds": 450
+      "totalTimeSeconds": 28986
     },
     {
       "originalName": "donotdisturbd",
       "processCategory": "UNCATEGORIZED",
       "trackingFrozen": false,
-      "totalTimeSeconds": 450
+      "totalTimeSeconds": 28986
     },
     {
       "originalName": "SettingsSystemExtensionController",
       "processCategory": "UNCATEGORIZED",
       "trackingFrozen": false,
-      "totalTimeSeconds": 450
+      "totalTimeSeconds": 28986
     },
     {
       "originalName": "Google Chrome Helper (Renderer)",
@@ -1169,49 +1168,49 @@
       "originalName": "FamilySettings",
       "processCategory": "UNCATEGORIZED",
       "trackingFrozen": false,
-      "totalTimeSeconds": 450
+      "totalTimeSeconds": 28986
     },
     {
       "originalName": "LegacyPluginEnablement",
       "processCategory": "UNCATEGORIZED",
       "trackingFrozen": false,
-      "totalTimeSeconds": 450
+      "totalTimeSeconds": 28986
     },
     {
       "originalName": "FSKitModuleManagement",
       "processCategory": "UNCATEGORIZED",
       "trackingFrozen": false,
-      "totalTimeSeconds": 450
+      "totalTimeSeconds": 28986
     },
     {
       "originalName": "AppPredictionIntentsHelperService",
       "processCategory": "UNCATEGORIZED",
       "trackingFrozen": false,
-      "totalTimeSeconds": 450
+      "totalTimeSeconds": 28986
     },
     {
       "originalName": "MediaExtensionsSettingsController",
       "processCategory": "UNCATEGORIZED",
       "trackingFrozen": false,
-      "totalTimeSeconds": 450
+      "totalTimeSeconds": 28986
     },
     {
       "originalName": "HeadphoneSettingsExtension",
       "processCategory": "UNCATEGORIZED",
       "trackingFrozen": false,
-      "totalTimeSeconds": 450
+      "totalTimeSeconds": 28986
     },
     {
       "originalName": "FollowUpSettingsExtension",
       "processCategory": "UNCATEGORIZED",
       "trackingFrozen": false,
-      "totalTimeSeconds": 450
+      "totalTimeSeconds": 28986
     },
     {
       "originalName": "VPN",
       "processCategory": "UNCATEGORIZED",
       "trackingFrozen": false,
-      "totalTimeSeconds": 450
+      "totalTimeSeconds": 28986
     },
     {
       "originalName": "Google Chrome Helper (Renderer)",
@@ -1223,31 +1222,31 @@
       "originalName": "ClassroomSettings",
       "processCategory": "UNCATEGORIZED",
       "trackingFrozen": false,
-      "totalTimeSeconds": 450
+      "totalTimeSeconds": 28986
     },
     {
       "originalName": "UsageTrackingAgent",
       "processCategory": "UNCATEGORIZED",
       "trackingFrozen": false,
-      "totalTimeSeconds": 450
+      "totalTimeSeconds": 900
     },
     {
       "originalName": "calaccessd",
       "processCategory": "UNCATEGORIZED",
       "trackingFrozen": false,
-      "totalTimeSeconds": 450
+      "totalTimeSeconds": 28986
     },
     {
       "originalName": "linkd",
       "processCategory": "UNCATEGORIZED",
       "trackingFrozen": false,
-      "totalTimeSeconds": 450
+      "totalTimeSeconds": 28986
     },
     {
       "originalName": "knowledge-agent",
       "processCategory": "UNCATEGORIZED",
       "trackingFrozen": false,
-      "totalTimeSeconds": 450
+      "totalTimeSeconds": 900
     },
     {
       "originalName": "Google Chrome Helper (Renderer)",
@@ -1271,7 +1270,7 @@
       "originalName": "com.docker.backend",
       "processCategory": "UNCATEGORIZED",
       "trackingFrozen": false,
-      "totalTimeSeconds": 450
+      "totalTimeSeconds": 8631
     },
     {
       "originalName": "Google Chrome Helper (Renderer)",
@@ -1283,31 +1282,31 @@
       "originalName": "secd",
       "processCategory": "UNCATEGORIZED",
       "trackingFrozen": false,
-      "totalTimeSeconds": 450
+      "totalTimeSeconds": 28986
     },
     {
       "originalName": "UserEventAgent",
       "processCategory": "UNCATEGORIZED",
       "trackingFrozen": false,
-      "totalTimeSeconds": 450
+      "totalTimeSeconds": 28986
     },
     {
       "originalName": "universalaccessd",
       "processCategory": "UNCATEGORIZED",
       "trackingFrozen": false,
-      "totalTimeSeconds": 450
+      "totalTimeSeconds": 28986
     },
     {
       "originalName": "Keychain Circle Notification",
       "processCategory": "UNCATEGORIZED",
       "trackingFrozen": false,
-      "totalTimeSeconds": 450
+      "totalTimeSeconds": 28986
     },
     {
       "originalName": "pboard",
       "processCategory": "UNCATEGORIZED",
       "trackingFrozen": false,
-      "totalTimeSeconds": 450
+      "totalTimeSeconds": 28986
     },
     {
       "originalName": "com.docker.backend",
@@ -1331,67 +1330,67 @@
       "originalName": "nsurlsessiond",
       "processCategory": "UNCATEGORIZED",
       "trackingFrozen": false,
-      "totalTimeSeconds": 450
+      "totalTimeSeconds": 28986
     },
     {
       "originalName": "containermanagerd",
       "processCategory": "UNCATEGORIZED",
       "trackingFrozen": false,
-      "totalTimeSeconds": 450
+      "totalTimeSeconds": 28986
     },
     {
       "originalName": "corespeechd",
       "processCategory": "UNCATEGORIZED",
       "trackingFrozen": false,
-      "totalTimeSeconds": 450
+      "totalTimeSeconds": 28986
     },
     {
       "originalName": "rapportd",
       "processCategory": "UNCATEGORIZED",
       "trackingFrozen": false,
-      "totalTimeSeconds": 450
+      "totalTimeSeconds": 28986
     },
     {
       "originalName": "lockoutagent",
       "processCategory": "UNCATEGORIZED",
       "trackingFrozen": false,
-      "totalTimeSeconds": 450
+      "totalTimeSeconds": 28986
     },
     {
       "originalName": "Codex",
       "processCategory": "UNCATEGORIZED",
       "trackingFrozen": false,
-      "totalTimeSeconds": 450
+      "totalTimeSeconds": 28986
     },
     {
       "originalName": "usernoted",
       "processCategory": "UNCATEGORIZED",
       "trackingFrozen": false,
-      "totalTimeSeconds": 450
+      "totalTimeSeconds": 28986
     },
     {
       "originalName": "migrationhelper",
       "processCategory": "UNCATEGORIZED",
       "trackingFrozen": false,
-      "totalTimeSeconds": 450
+      "totalTimeSeconds": 28986
     },
     {
       "originalName": "homed",
       "processCategory": "UNCATEGORIZED",
       "trackingFrozen": false,
-      "totalTimeSeconds": 450
+      "totalTimeSeconds": 28986
     },
     {
       "originalName": "ModelCatalogAgent",
       "processCategory": "UNCATEGORIZED",
       "trackingFrozen": false,
-      "totalTimeSeconds": 450
+      "totalTimeSeconds": 14586
     },
     {
       "originalName": "mlhostd",
       "processCategory": "UNCATEGORIZED",
       "trackingFrozen": false,
-      "totalTimeSeconds": 450
+      "totalTimeSeconds": 900
     },
     {
       "originalName": "extensionkitservice",
@@ -1403,13 +1402,13 @@
       "originalName": "ScreenTimeAgent",
       "processCategory": "UNCATEGORIZED",
       "trackingFrozen": false,
-      "totalTimeSeconds": 450
+      "totalTimeSeconds": 28986
     },
     {
       "originalName": "neagent",
       "processCategory": "UNCATEGORIZED",
       "trackingFrozen": false,
-      "totalTimeSeconds": 450
+      "totalTimeSeconds": 28986
     },
     {
       "originalName": "Google Chrome Helper (Renderer)",
@@ -1427,7 +1426,7 @@
       "originalName": "accountsd",
       "processCategory": "UNCATEGORIZED",
       "trackingFrozen": false,
-      "totalTimeSeconds": 450
+      "totalTimeSeconds": 28986
     },
     {
       "originalName": "java",
@@ -1439,19 +1438,19 @@
       "originalName": "siriknowledged",
       "processCategory": "UNCATEGORIZED",
       "trackingFrozen": false,
-      "totalTimeSeconds": 450
+      "totalTimeSeconds": 28986
     },
     {
       "originalName": "BiomeAgent",
       "processCategory": "UNCATEGORIZED",
       "trackingFrozen": false,
-      "totalTimeSeconds": 450
+      "totalTimeSeconds": 28986
     },
     {
       "originalName": "identityservicesd",
       "processCategory": "UNCATEGORIZED",
       "trackingFrozen": false,
-      "totalTimeSeconds": 450
+      "totalTimeSeconds": 28986
     },
     {
       "originalName": "Google Chrome Helper (Renderer)",
@@ -1463,43 +1462,43 @@
       "originalName": "WiFiAgent",
       "processCategory": "UNCATEGORIZED",
       "trackingFrozen": false,
-      "totalTimeSeconds": 450
+      "totalTimeSeconds": 28986
     },
     {
       "originalName": "voicebankingd",
       "processCategory": "UNCATEGORIZED",
       "trackingFrozen": false,
-      "totalTimeSeconds": 450
+      "totalTimeSeconds": 28986
     },
     {
       "originalName": "com.docker.build",
       "processCategory": "UNCATEGORIZED",
       "trackingFrozen": false,
-      "totalTimeSeconds": 450
+      "totalTimeSeconds": 28986
     },
     {
       "originalName": "usernotificationsd",
       "processCategory": "UNCATEGORIZED",
       "trackingFrozen": false,
-      "totalTimeSeconds": 450
+      "totalTimeSeconds": 28986
     },
     {
       "originalName": "Docker Desktop",
       "processCategory": "UNCATEGORIZED",
       "trackingFrozen": false,
-      "totalTimeSeconds": 450
+      "totalTimeSeconds": 28986
     },
     {
       "originalName": "com.docker.virtualization",
       "processCategory": "UNCATEGORIZED",
       "trackingFrozen": false,
-      "totalTimeSeconds": 450
+      "totalTimeSeconds": 28986
     },
     {
       "originalName": "familycircled",
       "processCategory": "UNCATEGORIZED",
       "trackingFrozen": false,
-      "totalTimeSeconds": 450
+      "totalTimeSeconds": 28986
     },
     {
       "originalName": "cef_server Helper",
@@ -1511,13 +1510,13 @@
       "originalName": "AssetCacheLocatorService",
       "processCategory": "UNCATEGORIZED",
       "trackingFrozen": false,
-      "totalTimeSeconds": 450
+      "totalTimeSeconds": 28986
     },
     {
       "originalName": "docker-sandbox",
       "processCategory": "UNCATEGORIZED",
       "trackingFrozen": false,
-      "totalTimeSeconds": 450
+      "totalTimeSeconds": 28986
     },
     {
       "originalName": "mdworker_shared",
@@ -1529,7 +1528,7 @@
       "originalName": "docker",
       "processCategory": "UNCATEGORIZED",
       "trackingFrozen": false,
-      "totalTimeSeconds": 0
+      "totalTimeSeconds": 5427
     },
     {
       "originalName": "docker",
@@ -1547,31 +1546,31 @@
       "originalName": "com.apple.Virtualization.VirtualMachine",
       "processCategory": "UNCATEGORIZED",
       "trackingFrozen": false,
-      "totalTimeSeconds": 450
+      "totalTimeSeconds": 28986
     },
     {
       "originalName": "corespotlightd",
       "processCategory": "UNCATEGORIZED",
       "trackingFrozen": false,
-      "totalTimeSeconds": 450
+      "totalTimeSeconds": 28986
     },
     {
       "originalName": "fileproviderd",
       "processCategory": "UNCATEGORIZED",
       "trackingFrozen": false,
-      "totalTimeSeconds": 450
+      "totalTimeSeconds": 28986
     },
     {
       "originalName": "coreauthd",
       "processCategory": "UNCATEGORIZED",
       "trackingFrozen": false,
-      "totalTimeSeconds": 450
+      "totalTimeSeconds": 28986
     },
     {
       "originalName": "sharingd",
       "processCategory": "UNCATEGORIZED",
       "trackingFrozen": false,
-      "totalTimeSeconds": 450
+      "totalTimeSeconds": 28986
     },
     {
       "originalName": "Google Chrome Helper",
@@ -1589,85 +1588,85 @@
       "originalName": "ContinuityCaptureAgent",
       "processCategory": "UNCATEGORIZED",
       "trackingFrozen": false,
-      "totalTimeSeconds": 450
+      "totalTimeSeconds": 28986
     },
     {
       "originalName": "Scroll Reverser",
       "processCategory": "UNCATEGORIZED",
       "trackingFrozen": false,
-      "totalTimeSeconds": 450
+      "totalTimeSeconds": 28986
     },
     {
       "originalName": "IMAutomaticHistoryDeletionAgent",
       "processCategory": "UNCATEGORIZED",
       "trackingFrozen": false,
-      "totalTimeSeconds": 450
+      "totalTimeSeconds": 28986
     },
     {
       "originalName": "Docker Desktop Helper (GPU)",
       "processCategory": "UNCATEGORIZED",
       "trackingFrozen": false,
-      "totalTimeSeconds": 450
+      "totalTimeSeconds": 28986
     },
     {
       "originalName": "Docker Desktop Helper",
       "processCategory": "UNCATEGORIZED",
       "trackingFrozen": false,
-      "totalTimeSeconds": 450
+      "totalTimeSeconds": 28986
     },
     {
       "originalName": "sharedfilelistd",
       "processCategory": "UNCATEGORIZED",
       "trackingFrozen": false,
-      "totalTimeSeconds": 450
+      "totalTimeSeconds": 28986
     },
     {
       "originalName": "CoreLocationAgent",
       "processCategory": "UNCATEGORIZED",
       "trackingFrozen": false,
-      "totalTimeSeconds": 450
+      "totalTimeSeconds": 28986
     },
     {
       "originalName": "syncdefaultsd",
       "processCategory": "UNCATEGORIZED",
       "trackingFrozen": false,
-      "totalTimeSeconds": 450
+      "totalTimeSeconds": 28986
     },
     {
       "originalName": "duetexpertd",
       "processCategory": "UNCATEGORIZED",
       "trackingFrozen": false,
-      "totalTimeSeconds": 450
+      "totalTimeSeconds": 28986
     },
     {
       "originalName": "ControlCenter",
       "processCategory": "UNCATEGORIZED",
       "trackingFrozen": false,
-      "totalTimeSeconds": 450
+      "totalTimeSeconds": 28986
     },
     {
       "originalName": "com.apple.hiservices-xpcservice",
       "processCategory": "UNCATEGORIZED",
       "trackingFrozen": false,
-      "totalTimeSeconds": 450
+      "totalTimeSeconds": 28986
     },
     {
       "originalName": "contentlinkingd",
       "processCategory": "UNCATEGORIZED",
       "trackingFrozen": false,
-      "totalTimeSeconds": 450
+      "totalTimeSeconds": 28986
     },
     {
       "originalName": "tccd",
       "processCategory": "UNCATEGORIZED",
       "trackingFrozen": false,
-      "totalTimeSeconds": 450
+      "totalTimeSeconds": 28986
     },
     {
       "originalName": "Codex Helper",
       "processCategory": "UNCATEGORIZED",
       "trackingFrozen": false,
-      "totalTimeSeconds": 450
+      "totalTimeSeconds": 5904
     },
     {
       "originalName": "zsh",
@@ -1703,19 +1702,19 @@
       "originalName": "akd",
       "processCategory": "UNCATEGORIZED",
       "trackingFrozen": false,
-      "totalTimeSeconds": 450
+      "totalTimeSeconds": 28986
     },
     {
       "originalName": "bluetoothuserd",
       "processCategory": "UNCATEGORIZED",
       "trackingFrozen": false,
-      "totalTimeSeconds": 450
+      "totalTimeSeconds": 28986
     },
     {
       "originalName": "Activity Monitor",
       "processCategory": "UNCATEGORIZED",
       "trackingFrozen": false,
-      "totalTimeSeconds": 450
+      "totalTimeSeconds": 28986
     },
     {
       "originalName": "Google Chrome Helper (Renderer)",
@@ -1727,13 +1726,13 @@
       "originalName": "Keychain Access",
       "processCategory": "UNCATEGORIZED",
       "trackingFrozen": false,
-      "totalTimeSeconds": 450
+      "totalTimeSeconds": 28986
     },
     {
       "originalName": "ssh-agent",
       "processCategory": "UNCATEGORIZED",
       "trackingFrozen": false,
-      "totalTimeSeconds": 450
+      "totalTimeSeconds": 28986
     },
     {
       "originalName": "Google Chrome Helper (Renderer)",
@@ -1745,19 +1744,19 @@
       "originalName": "Docker Desktop Helper (Renderer)",
       "processCategory": "UNCATEGORIZED",
       "trackingFrozen": false,
-      "totalTimeSeconds": 450
+      "totalTimeSeconds": 28986
     },
     {
       "originalName": "WindowManager",
       "processCategory": "UNCATEGORIZED",
       "trackingFrozen": false,
-      "totalTimeSeconds": 450
+      "totalTimeSeconds": 28986
     },
     {
       "originalName": "Discord",
       "processCategory": "UNCATEGORIZED",
       "trackingFrozen": false,
-      "totalTimeSeconds": 450
+      "totalTimeSeconds": 28986
     },
     {
       "originalName": "Google Chrome Helper (Renderer)",
@@ -1781,19 +1780,19 @@
       "originalName": "Discord Helper (GPU)",
       "processCategory": "UNCATEGORIZED",
       "trackingFrozen": false,
-      "totalTimeSeconds": 450
+      "totalTimeSeconds": 28986
     },
     {
       "originalName": "UserNotificationCenter",
       "processCategory": "UNCATEGORIZED",
       "trackingFrozen": false,
-      "totalTimeSeconds": 450
+      "totalTimeSeconds": 28986
     },
     {
       "originalName": "Discord Helper",
       "processCategory": "UNCATEGORIZED",
       "trackingFrozen": false,
-      "totalTimeSeconds": 450
+      "totalTimeSeconds": 5904
     },
     {
       "originalName": "replicatord",
@@ -1805,7 +1804,7 @@
       "originalName": "StatusKitAgent",
       "processCategory": "UNCATEGORIZED",
       "trackingFrozen": false,
-      "totalTimeSeconds": 450
+      "totalTimeSeconds": 900
     },
     {
       "originalName": "Google Chrome Helper (Renderer)",
@@ -1823,7 +1822,7 @@
       "originalName": "com.apple.geod",
       "processCategory": "UNCATEGORIZED",
       "trackingFrozen": false,
-      "totalTimeSeconds": 450
+      "totalTimeSeconds": 28986
     },
     {
       "originalName": "transparencyd",
@@ -1841,7 +1840,7 @@
       "originalName": "Discord Helper (Renderer)",
       "processCategory": "UNCATEGORIZED",
       "trackingFrozen": false,
-      "totalTimeSeconds": 450
+      "totalTimeSeconds": 28986
     },
     {
       "originalName": "Google Chrome Helper (Renderer)",
@@ -1871,7 +1870,7 @@
       "originalName": "Discord Helper (Plugin)",
       "processCategory": "UNCATEGORIZED",
       "trackingFrozen": false,
-      "totalTimeSeconds": 450
+      "totalTimeSeconds": 28986
     },
     {
       "originalName": "disclaimer",
@@ -1901,13 +1900,13 @@
       "originalName": "NotificationCenter",
       "processCategory": "UNCATEGORIZED",
       "trackingFrozen": false,
-      "totalTimeSeconds": 450
+      "totalTimeSeconds": 28986
     },
     {
       "originalName": "inputanalyticsd",
       "processCategory": "UNCATEGORIZED",
       "trackingFrozen": false,
-      "totalTimeSeconds": 450
+      "totalTimeSeconds": 28986
     },
     {
       "originalName": "Google Chrome Helper (Renderer)",
@@ -1919,43 +1918,43 @@
       "originalName": "searchpartyuseragent",
       "processCategory": "UNCATEGORIZED",
       "trackingFrozen": false,
-      "totalTimeSeconds": 450
+      "totalTimeSeconds": 28986
     },
     {
       "originalName": "imagent",
       "processCategory": "UNCATEGORIZED",
       "trackingFrozen": false,
-      "totalTimeSeconds": 450
+      "totalTimeSeconds": 28986
     },
     {
       "originalName": "ThemeWidgetControlViewService",
       "processCategory": "UNCATEGORIZED",
       "trackingFrozen": false,
-      "totalTimeSeconds": 450
+      "totalTimeSeconds": 28986
     },
     {
       "originalName": "suggestd",
       "processCategory": "UNCATEGORIZED",
       "trackingFrozen": false,
-      "totalTimeSeconds": 450
+      "totalTimeSeconds": 28986
     },
     {
       "originalName": "mediaremoteagent",
       "processCategory": "UNCATEGORIZED",
       "trackingFrozen": false,
-      "totalTimeSeconds": 450
+      "totalTimeSeconds": 28986
     },
     {
       "originalName": "useractivityd",
       "processCategory": "UNCATEGORIZED",
       "trackingFrozen": false,
-      "totalTimeSeconds": 450
+      "totalTimeSeconds": 28986
     },
     {
       "originalName": "avconferenced",
       "processCategory": "UNCATEGORIZED",
       "trackingFrozen": false,
-      "totalTimeSeconds": 450
+      "totalTimeSeconds": 28986
     },
     {
       "originalName": "appplaceholdersyncd",
@@ -1979,19 +1978,19 @@
       "originalName": "amsaccountsd",
       "processCategory": "UNCATEGORIZED",
       "trackingFrozen": false,
-      "totalTimeSeconds": 372
+      "totalTimeSeconds": 744
     },
     {
       "originalName": "amsengagementd",
       "processCategory": "UNCATEGORIZED",
       "trackingFrozen": false,
-      "totalTimeSeconds": 372
+      "totalTimeSeconds": 744
     },
     {
       "originalName": "PAH_Extension",
       "processCategory": "UNCATEGORIZED",
       "trackingFrozen": false,
-      "totalTimeSeconds": 450
+      "totalTimeSeconds": 28986
     },
     {
       "originalName": "com.apple.StreamingUnzipService",
@@ -2015,7 +2014,7 @@
       "originalName": "mdbulkimport",
       "processCategory": "UNCATEGORIZED",
       "trackingFrozen": false,
-      "totalTimeSeconds": 450
+      "totalTimeSeconds": 28986
     },
     {
       "originalName": "ProtectedCloudKeySyncing",
@@ -2027,13 +2026,13 @@
       "originalName": "milod",
       "processCategory": "UNCATEGORIZED",
       "trackingFrozen": false,
-      "totalTimeSeconds": 450
+      "totalTimeSeconds": 28986
     },
     {
       "originalName": "Claude",
       "processCategory": "UNCATEGORIZED",
       "trackingFrozen": false,
-      "totalTimeSeconds": 450
+      "totalTimeSeconds": 28986
     },
     {
       "originalName": "Google Chrome Helper (Renderer)",
@@ -2063,61 +2062,61 @@
       "originalName": "csimporter",
       "processCategory": "UNCATEGORIZED",
       "trackingFrozen": false,
-      "totalTimeSeconds": 450
+      "totalTimeSeconds": 28986
     },
     {
       "originalName": "contactsd",
       "processCategory": "UNCATEGORIZED",
       "trackingFrozen": false,
-      "totalTimeSeconds": 450
+      "totalTimeSeconds": 900
     },
     {
       "originalName": "Siri",
       "processCategory": "UNCATEGORIZED",
       "trackingFrozen": false,
-      "totalTimeSeconds": 450
+      "totalTimeSeconds": 28986
     },
     {
       "originalName": "IntelligencePlatformComputeService",
       "processCategory": "UNCATEGORIZED",
       "trackingFrozen": false,
-      "totalTimeSeconds": 450
+      "totalTimeSeconds": 28986
     },
     {
       "originalName": "triald",
       "processCategory": "UNCATEGORIZED",
       "trackingFrozen": false,
-      "totalTimeSeconds": 450
+      "totalTimeSeconds": 28986
     },
     {
       "originalName": "passd",
       "processCategory": "UNCATEGORIZED",
       "trackingFrozen": false,
-      "totalTimeSeconds": 450
+      "totalTimeSeconds": 28986
     },
     {
       "originalName": "com.apple.CloudDocs.iCloudDriveFileProvider",
       "processCategory": "UNCATEGORIZED",
       "trackingFrozen": false,
-      "totalTimeSeconds": 450
+      "totalTimeSeconds": 28986
     },
     {
       "originalName": "fontd",
       "processCategory": "UNCATEGORIZED",
       "trackingFrozen": false,
-      "totalTimeSeconds": 450
+      "totalTimeSeconds": 28986
     },
     {
       "originalName": "fontworker",
       "processCategory": "UNCATEGORIZED",
       "trackingFrozen": false,
-      "totalTimeSeconds": 450
+      "totalTimeSeconds": 28986
     },
     {
       "originalName": "Claude Helper (Renderer)",
       "processCategory": "UNCATEGORIZED",
       "trackingFrozen": false,
-      "totalTimeSeconds": 450
+      "totalTimeSeconds": 8631
     },
     {
       "originalName": "Claude Helper (Renderer)",
@@ -2129,7 +2128,7 @@
       "originalName": "tipsd",
       "processCategory": "UNCATEGORIZED",
       "trackingFrozen": false,
-      "totalTimeSeconds": 450
+      "totalTimeSeconds": 28986
     },
     {
       "originalName": "Claude Helper (Renderer)",
@@ -2141,7 +2140,7 @@
       "originalName": "replayd",
       "processCategory": "UNCATEGORIZED",
       "trackingFrozen": false,
-      "totalTimeSeconds": 450
+      "totalTimeSeconds": 28986
     },
     {
       "originalName": "spotlightknowledged",
@@ -2153,7 +2152,7 @@
       "originalName": "ViewBridgeAuxiliary",
       "processCategory": "UNCATEGORIZED",
       "trackingFrozen": false,
-      "totalTimeSeconds": 450
+      "totalTimeSeconds": 28986
     },
     {
       "originalName": "siriactionsd",
@@ -2165,19 +2164,19 @@
       "originalName": "cef_server Helper (Renderer)",
       "processCategory": "UNCATEGORIZED",
       "trackingFrozen": false,
-      "totalTimeSeconds": 450
+      "totalTimeSeconds": 28986
     },
     {
       "originalName": "ndoagent",
       "processCategory": "UNCATEGORIZED",
       "trackingFrozen": false,
-      "totalTimeSeconds": 450
+      "totalTimeSeconds": 28986
     },
     {
       "originalName": "gamecontrolleragentd",
       "processCategory": "UNCATEGORIZED",
       "trackingFrozen": false,
-      "totalTimeSeconds": 450
+      "totalTimeSeconds": 28986
     },
     {
       "originalName": "docker",
@@ -2189,7 +2188,7 @@
       "originalName": "docker-compose",
       "processCategory": "UNCATEGORIZED",
       "trackingFrozen": false,
-      "totalTimeSeconds": 450
+      "totalTimeSeconds": 28986
     },
     {
       "originalName": "mdworker_shared",
@@ -2213,7 +2212,7 @@
       "originalName": "WallpaperAgent",
       "processCategory": "UNCATEGORIZED",
       "trackingFrozen": false,
-      "totalTimeSeconds": 450
+      "totalTimeSeconds": 28986
     },
     {
       "originalName": "Google Chrome Helper (Renderer)",
@@ -2225,7 +2224,7 @@
       "originalName": "feedbackd",
       "processCategory": "UNCATEGORIZED",
       "trackingFrozen": false,
-      "totalTimeSeconds": 450
+      "totalTimeSeconds": 28986
     },
     {
       "originalName": "Google Chrome Helper (Renderer)",
@@ -2237,19 +2236,19 @@
       "originalName": "codex",
       "processCategory": "UNCATEGORIZED",
       "trackingFrozen": false,
-      "totalTimeSeconds": 450
+      "totalTimeSeconds": 28986
     },
     {
       "originalName": "mediaanalysisd",
       "processCategory": "UNCATEGORIZED",
       "trackingFrozen": false,
-      "totalTimeSeconds": 450
+      "totalTimeSeconds": 900
     },
     {
       "originalName": "localizationswitcherd",
       "processCategory": "UNCATEGORIZED",
       "trackingFrozen": false,
-      "totalTimeSeconds": 366
+      "totalTimeSeconds": 732
     },
     {
       "originalName": "full-line-inference",
@@ -2261,37 +2260,37 @@
       "originalName": "Google Chrome",
       "processCategory": "UNCATEGORIZED",
       "trackingFrozen": false,
-      "totalTimeSeconds": 450
+      "totalTimeSeconds": 28986
     },
     {
       "originalName": "Telegram",
       "processCategory": "UNCATEGORIZED",
       "trackingFrozen": false,
-      "totalTimeSeconds": 450
+      "totalTimeSeconds": 28986
     },
     {
       "originalName": "Autoupdate",
       "processCategory": "UNCATEGORIZED",
       "trackingFrozen": false,
-      "totalTimeSeconds": 450
+      "totalTimeSeconds": 28986
     },
     {
       "originalName": "Codex Helper (Renderer)",
       "processCategory": "UNCATEGORIZED",
       "trackingFrozen": false,
-      "totalTimeSeconds": 450
+      "totalTimeSeconds": 28986
     },
     {
       "originalName": "Updater",
       "processCategory": "UNCATEGORIZED",
       "trackingFrozen": false,
-      "totalTimeSeconds": 450
+      "totalTimeSeconds": 28986
     },
     {
       "originalName": "networkserviceproxy",
       "processCategory": "UNCATEGORIZED",
       "trackingFrozen": false,
-      "totalTimeSeconds": 450
+      "totalTimeSeconds": 28986
     },
     {
       "originalName": "MTLAssetUpgraderD",
@@ -2309,19 +2308,19 @@
       "originalName": "Dock",
       "processCategory": "UNCATEGORIZED",
       "trackingFrozen": false,
-      "totalTimeSeconds": 450
+      "totalTimeSeconds": 28986
     },
     {
       "originalName": "SystemUIServer",
       "processCategory": "UNCATEGORIZED",
       "trackingFrozen": false,
-      "totalTimeSeconds": 450
+      "totalTimeSeconds": 28986
     },
     {
       "originalName": "Finder",
       "processCategory": "UNCATEGORIZED",
       "trackingFrozen": false,
-      "totalTimeSeconds": 450
+      "totalTimeSeconds": 28986
     },
     {
       "originalName": "Google Chrome Helper (Renderer)",
@@ -2339,25 +2338,25 @@
       "originalName": "Google Chrome Helper (Plugin)",
       "processCategory": "UNCATEGORIZED",
       "trackingFrozen": false,
-      "totalTimeSeconds": 450
+      "totalTimeSeconds": 28986
     },
     {
       "originalName": "BackgroundTaskManagementAgent",
       "processCategory": "UNCATEGORIZED",
       "trackingFrozen": false,
-      "totalTimeSeconds": 363
+      "totalTimeSeconds": 23418
     },
     {
       "originalName": "PackageThumbnailExtension",
       "processCategory": "UNCATEGORIZED",
       "trackingFrozen": false,
-      "totalTimeSeconds": 363
+      "totalTimeSeconds": 726
     },
     {
       "originalName": "PowerChime",
       "processCategory": "UNCATEGORIZED",
       "trackingFrozen": false,
-      "totalTimeSeconds": 450
+      "totalTimeSeconds": 28986
     },
     {
       "originalName": "axassetsd",
@@ -2375,7 +2374,7 @@
       "originalName": "WallpaperImageExtension",
       "processCategory": "UNCATEGORIZED",
       "trackingFrozen": false,
-      "totalTimeSeconds": 450
+      "totalTimeSeconds": 28986
     },
     {
       "originalName": "MTLCompilerService",
@@ -2393,13 +2392,13 @@
       "originalName": "AudioComponentRegistrar",
       "processCategory": "UNCATEGORIZED",
       "trackingFrozen": false,
-      "totalTimeSeconds": 363
+      "totalTimeSeconds": 726
     },
     {
       "originalName": "AMPDeviceDiscoveryAgent",
       "processCategory": "UNCATEGORIZED",
       "trackingFrozen": false,
-      "totalTimeSeconds": 450
+      "totalTimeSeconds": 28986
     },
     {
       "originalName": "com.apple.audio.ComponentTagHelper",
@@ -2435,7 +2434,7 @@
       "originalName": "chronod",
       "processCategory": "UNCATEGORIZED",
       "trackingFrozen": false,
-      "totalTimeSeconds": 450
+      "totalTimeSeconds": 28986
     },
     {
       "originalName": "Google Chrome Helper (Renderer)",
@@ -2447,43 +2446,199 @@
       "originalName": "imklaunchagent",
       "processCategory": "UNCATEGORIZED",
       "trackingFrozen": false,
-      "totalTimeSeconds": 450
+      "totalTimeSeconds": 28986
     },
     {
       "originalName": "CursorUIViewService",
       "processCategory": "UNCATEGORIZED",
       "trackingFrozen": false,
-      "totalTimeSeconds": 450
+      "totalTimeSeconds": 28986
     },
     {
       "originalName": "CalendarWidgetExtension",
       "processCategory": "UNCATEGORIZED",
       "trackingFrozen": false,
-      "totalTimeSeconds": 450
+      "totalTimeSeconds": 28986
     },
     {
       "originalName": "WorldClockWidget",
       "processCategory": "UNCATEGORIZED",
       "trackingFrozen": false,
-      "totalTimeSeconds": 450
+      "totalTimeSeconds": 28986
     },
     {
       "originalName": "ScreenTimeWidgetExtension",
       "processCategory": "UNCATEGORIZED",
       "trackingFrozen": false,
-      "totalTimeSeconds": 450
+      "totalTimeSeconds": 28986
     },
     {
       "originalName": "com.apple.dock.extra",
       "processCategory": "UNCATEGORIZED",
       "trackingFrozen": false,
-      "totalTimeSeconds": 450
+      "totalTimeSeconds": 28986
     },
     {
       "originalName": "Spotlight",
       "processCategory": "UNCATEGORIZED",
       "trackingFrozen": false,
-      "totalTimeSeconds": 450
+      "totalTimeSeconds": 28986
+    },
+    {
+      "originalName": "AppSSOAgent",
+      "processCategory": "UNCATEGORIZED",
+      "trackingFrozen": false,
+      "totalTimeSeconds": 186
+    },
+    {
+      "originalName": "com.apple.Safari.SafeBrowsing.Service",
+      "processCategory": "UNCATEGORIZED",
+      "trackingFrozen": false,
+      "totalTimeSeconds": 0
+    },
+    {
+      "originalName": "LinkedNotesUIService",
+      "processCategory": "UNCATEGORIZED",
+      "trackingFrozen": false,
+      "totalTimeSeconds": 186
+    },
+    {
+      "originalName": "cdpd",
+      "processCategory": "UNCATEGORIZED",
+      "trackingFrozen": false,
+      "totalTimeSeconds": 0
+    },
+    {
+      "originalName": "AuthenticationServicesAgent",
+      "processCategory": "UNCATEGORIZED",
+      "trackingFrozen": false,
+      "totalTimeSeconds": 0
+    },
+    {
+      "originalName": "parsec-fbf",
+      "processCategory": "UNCATEGORIZED",
+      "trackingFrozen": false,
+      "totalTimeSeconds": 0
+    },
+    {
+      "originalName": "keyboardservicesd",
+      "processCategory": "UNCATEGORIZED",
+      "trackingFrozen": false,
+      "totalTimeSeconds": 0
+    },
+    {
+      "originalName": "com.apple.accessibility.mediaaccessibilityd",
+      "processCategory": "UNCATEGORIZED",
+      "trackingFrozen": false,
+      "totalTimeSeconds": 0
+    },
+    {
+      "originalName": "TextInputSwitcher",
+      "processCategory": "UNCATEGORIZED",
+      "trackingFrozen": false,
+      "totalTimeSeconds": 186
+    },
+    {
+      "originalName": "com.apple.iCloudHelper",
+      "processCategory": "UNCATEGORIZED",
+      "trackingFrozen": false,
+      "totalTimeSeconds": 0
+    },
+    {
+      "originalName": "com.apple.SafariServices",
+      "processCategory": "UNCATEGORIZED",
+      "trackingFrozen": false,
+      "totalTimeSeconds": 0
+    },
+    {
+      "originalName": "coreautha",
+      "processCategory": "UNCATEGORIZED",
+      "trackingFrozen": false,
+      "totalTimeSeconds": 186
+    },
+    {
+      "originalName": "swtransparencyd",
+      "processCategory": "UNCATEGORIZED",
+      "trackingFrozen": false,
+      "totalTimeSeconds": 0
+    },
+    {
+      "originalName": "cloudphotod",
+      "processCategory": "UNCATEGORIZED",
+      "trackingFrozen": false,
+      "totalTimeSeconds": 0
+    },
+    {
+      "originalName": "AppleSpell",
+      "processCategory": "UNCATEGORIZED",
+      "trackingFrozen": false,
+      "totalTimeSeconds": 186
+    },
+    {
+      "originalName": "webprivacyd",
+      "processCategory": "UNCATEGORIZED",
+      "trackingFrozen": false,
+      "totalTimeSeconds": 0
+    },
+    {
+      "originalName": "photolibraryd",
+      "processCategory": "UNCATEGORIZED",
+      "trackingFrozen": false,
+      "totalTimeSeconds": 0
+    },
+    {
+      "originalName": "promotedcontentd",
+      "processCategory": "UNCATEGORIZED",
+      "trackingFrozen": false,
+      "totalTimeSeconds": 0
+    },
+    {
+      "originalName": "geodMachServiceBridge",
+      "processCategory": "UNCATEGORIZED",
+      "trackingFrozen": false,
+      "totalTimeSeconds": 186
+    },
+    {
+      "originalName": "keychainsharingmessagingd",
+      "processCategory": "UNCATEGORIZED",
+      "trackingFrozen": false,
+      "totalTimeSeconds": 0
+    },
+    {
+      "originalName": "mapssyncd",
+      "processCategory": "UNCATEGORIZED",
+      "trackingFrozen": false,
+      "totalTimeSeconds": 186
+    },
+    {
+      "originalName": "biomesyncd",
+      "processCategory": "UNCATEGORIZED",
+      "trackingFrozen": false,
+      "totalTimeSeconds": 9
+    },
+    {
+      "originalName": "ManagedSettingsAgent",
+      "processCategory": "UNCATEGORIZED",
+      "trackingFrozen": false,
+      "totalTimeSeconds": 186
+    },
+    {
+      "originalName": "mysqld",
+      "processCategory": "UNCATEGORIZED",
+      "trackingFrozen": false,
+      "totalTimeSeconds": 0
+    },
+    {
+      "originalName": "bash",
+      "processCategory": "UNCATEGORIZED",
+      "trackingFrozen": false,
+      "totalTimeSeconds": 0
+    },
+    {
+      "originalName": "spindump_agent",
+      "processCategory": "UNCATEGORIZED",
+      "trackingFrozen": false,
+      "totalTimeSeconds": 18
     }
   ]
 }
