@@ -10,19 +10,24 @@ import java.nio.file.WatchEvent;
 import java.nio.file.WatchKey;
 import java.nio.file.WatchService;
 import java.util.List;
+import javafx.application.Platform;
 import lombok.extern.slf4j.Slf4j;
 import org.productivitybuddy.config.ApplicationConfig;
 import org.productivitybuddy.lifecycle.Lifecycle;
 import org.productivitybuddy.model.Process;
+import org.productivitybuddy.service.FileExecutorService;
 import org.productivitybuddy.service.ProcessStateService;
 import org.productivitybuddy.store.ProcessStore;
+import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
 
 @Component
+@Order(400)
 @Slf4j
 public class FileWatcherService implements Lifecycle {
     private final ProcessStore processStore;
     private final ApplicationConfig config;
+    private final FileExecutorService fileExecutorService;
     private final ProcessStateService processStateService;
 
     private volatile boolean running;
@@ -30,10 +35,11 @@ public class FileWatcherService implements Lifecycle {
     private Thread watcherThread;
     private WatchService watchService;
 
-    public FileWatcherService(ProcessStore processStore, ApplicationConfig config,
+    public FileWatcherService(ProcessStore processStore, ApplicationConfig config, FileExecutorService fileExecutorService,
                               ProcessStateService processStateService) {
         this.processStore = processStore;
         this.config = config;
+        this.fileExecutorService = fileExecutorService;
         this.processStateService = processStateService;
     }
 
@@ -102,13 +108,16 @@ public class FileWatcherService implements Lifecycle {
     }
 
     private void applyExternalChanges() {
-        try {
-            final List<Process> loaded = this.processStore.loadAll();
-            this.processStateService.loadState(loaded);
-
-            log.info("Applied external changes from {}", this.config.getMappingFile());
-        } catch (Exception e) {
-            log.error("Failed to apply external changes", e);
-        }
+        this.fileExecutorService.submit(() -> {
+            try {
+                final List<Process> loaded = this.processStore.loadAll();
+                Platform.runLater(() -> {
+                    this.processStateService.loadState(loaded);
+                    log.info("Applied external changes from {}", this.config.getMappingFile());
+                });
+            } catch (Exception e) {
+                log.error("Failed to apply external changes", e);
+            }
+        });
     }
 }

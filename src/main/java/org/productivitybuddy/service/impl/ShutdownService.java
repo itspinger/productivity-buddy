@@ -7,6 +7,7 @@ import org.productivitybuddy.model.Process;
 import org.productivitybuddy.service.ProcessAggregationService;
 import org.productivitybuddy.service.FileExecutorService;
 import org.productivitybuddy.store.ProcessStore;
+import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
 
 /**
@@ -18,14 +19,14 @@ import org.springframework.stereotype.Component;
  * but not active in this session remain untouched.
  */
 @Component
+@Order(-1000)
 @Slf4j
 public class ShutdownService implements Lifecycle {
     private final ProcessStore processStore;
     private final FileExecutorService fileExecutorService;
     private final ProcessAggregationService processAggregationService;
 
-    public ShutdownService(ProcessStore processStore, FileExecutorService fileExecutorService,
-                           ProcessAggregationService processAggregationService) {
+    public ShutdownService(ProcessStore processStore, FileExecutorService fileExecutorService, ProcessAggregationService processAggregationService) {
         this.processStore = processStore;
         this.fileExecutorService = fileExecutorService;
         this.processAggregationService = processAggregationService;

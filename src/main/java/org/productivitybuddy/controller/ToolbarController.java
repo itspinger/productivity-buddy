@@ -6,6 +6,7 @@ import java.nio.file.Paths;
 import java.util.List;
 import javafx.animation.TranslateTransition;
 import javafx.application.Platform;
+import javafx.concurrent.Task;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.Parent;
@@ -14,6 +15,7 @@ import javafx.scene.layout.Region;
 import javafx.stage.FileChooser;
 import javafx.stage.FileChooser.ExtensionFilter;
 import javafx.util.Duration;
+import lombok.extern.slf4j.Slf4j;
 import org.productivitybuddy.config.ApplicationConfig;
 import org.productivitybuddy.model.Process;
 import org.productivitybuddy.service.ProcessAggregationService;
@@ -26,6 +28,7 @@ import org.springframework.stereotype.Component;
 
 @Component
 @Scope("prototype")
+@Slf4j
 public class ToolbarController {
     private final ApplicationConfig config;
     private final ProcessStore processStore;
@@ -81,13 +84,24 @@ public class ToolbarController {
             return;
         }
 
-        this.fileExecutorService.submit(() -> {
-            final List<Process> snapshot = this.processAggregationService.buildProcessSnapshot();
-            this.processStore.saveAll(snapshot, file.toPath());
+        final Task<List<Process>> saveTask = new Task<>() {
+            @Override
+            protected List<Process> call() {
+                final List<Process> snapshot = ToolbarController.this.processAggregationService.buildProcessSnapshot();
+                ToolbarController.this.processStore.saveAll(snapshot, file.toPath());
+                return snapshot;
+            }
+        };
+
+        saveTask.setOnSucceeded((event) -> {
             if (this.isPrimaryMappingFile(file.toPath())) {
-                Platform.runLater(() -> this.processStateService.commitState(snapshot));
+                this.processStateService.commitState(saveTask.getValue());
             }
         });
+
+        saveTask.setOnFailed(event -> log.error("Failed to save process mapping to {}", file.toPath(), saveTask.getException()));
+
+        this.fileExecutorService.submit(saveTask);
     }
 
     @FXML
@@ -103,10 +117,17 @@ public class ToolbarController {
             return;
         }
 
-        this.fileExecutorService.submit(() -> {
-            final List<Process> loaded = this.processStore.loadAll(file.toPath());
-            Platform.runLater(() -> this.processStateService.loadState(loaded));
-        });
+        final Task<List<Process>> loadTask = new Task<>() {
+            @Override
+            protected List<Process> call() {
+                return ToolbarController.this.processStore.loadAll(file.toPath());
+            }
+        };
+
+        loadTask.setOnSucceeded(event -> this.processStateService.loadState(loadTask.getValue()));
+        loadTask.setOnFailed(event -> log.error("Failed to load process mapping from {}", file.toPath(), loadTask.getException()));
+
+        this.fileExecutorService.submit(loadTask);
     }
 
     @FXML

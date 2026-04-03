@@ -18,11 +18,13 @@ import org.productivitybuddy.registry.ProcessRegistry;
 import org.productivitybuddy.service.ProcessScannerService;
 import org.productivitybuddy.store.ProcessStore;
 import org.productivitybuddy.thread.ThreadFactory;
+import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
 import oshi.SystemInfo;
 import oshi.software.os.OSProcess;
 
 @Component
+@Order(100)
 @Slf4j
 public class ProcessScannerServiceImpl implements ProcessScannerService {
     private final ProcessRegistry registry;
@@ -54,6 +56,8 @@ public class ProcessScannerServiceImpl implements ProcessScannerService {
     public void stop() {
         this.scheduler.shutdown();
         this.forkJoinPool.shutdown();
+        this.awaitTermination(this.scheduler, "process scanner scheduler");
+        this.awaitTermination(this.forkJoinPool, "process scanner fork-join pool");
         log.info("Process scanner stopped");
     }
 
@@ -256,6 +260,17 @@ public class ProcessScannerServiceImpl implements ProcessScannerService {
             }
 
             return "unknown";
+        }
+    }
+
+    private void awaitTermination(java.util.concurrent.ExecutorService executor, String name) {
+        try {
+            if (!executor.awaitTermination(5, TimeUnit.SECONDS)) {
+                log.warn("{} did not terminate within timeout", name);
+            }
+        } catch (InterruptedException e) {
+            Thread.currentThread().interrupt();
+            log.warn("Interrupted while stopping {}", name, e);
         }
     }
 }

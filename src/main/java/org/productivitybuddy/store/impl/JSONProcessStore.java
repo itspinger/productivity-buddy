@@ -43,7 +43,16 @@ public class JSONProcessStore implements ProcessStore {
 
         try (final Reader reader = Files.newBufferedReader(path)) {
             final JsonObject root = this.gson.fromJson(reader, JsonObject.class);
+            if (root == null || !root.has("processes")) {
+                log.warn("Mapping file {} is empty or missing 'processes' array", path);
+                return new ArrayList<>();
+            }
+
             final JsonArray processes = root.getAsJsonArray("processes");
+            if (processes == null) {
+                log.warn("Mapping file {} has null 'processes' array", path);
+                return new ArrayList<>();
+            }
 
             return StreamSupport.stream(processes.spliterator(), false)
                 .map(element -> this.gson.fromJson(element, Process.class))
@@ -63,8 +72,15 @@ public class JSONProcessStore implements ProcessStore {
         final JsonObject root = new JsonObject();
         root.add("processes", this.gson.toJsonTree(processes));
 
-        try (final Writer writer = Files.newBufferedWriter(path)) {
-            this.gson.toJson(root, writer);
+        try {
+            final Path parent = path.getParent();
+            if (parent != null) {
+                Files.createDirectories(parent);
+            }
+
+            try (final Writer writer = Files.newBufferedWriter(path)) {
+                this.gson.toJson(root, writer);
+            }
         } catch (IOException e) {
             throw new IllegalStateException("Failed to save processes to " + path, e);
         }

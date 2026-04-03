@@ -18,7 +18,6 @@ import org.productivitybuddy.model.AnalyticsSummary;
 import org.productivitybuddy.model.Process;
 import org.productivitybuddy.model.ProcessCategory;
 import org.productivitybuddy.model.ProcessInfo;
-import org.productivitybuddy.registry.ProcessRegistry;
 import org.productivitybuddy.service.ProcessAggregationService;
 import org.productivitybuddy.ui.ProcessNameTableCell;
 import org.productivitybuddy.ui.Icons;
@@ -29,7 +28,6 @@ import org.springframework.stereotype.Component;
 @Component
 @Scope("prototype")
 public class SpecificCategoryController implements AnalyticsUpdateListener {
-    private final ProcessRegistry registry;
     private final AnalyticsUpdateTimer updateTimer;
     private final ProcessAggregationService processAggregationService;
 
@@ -55,8 +53,7 @@ public class SpecificCategoryController implements AnalyticsUpdateListener {
     private ProcessCategory category;
     private MainViewController mainController;
 
-    public SpecificCategoryController(ProcessRegistry registry, AnalyticsUpdateTimer updateTimer, ProcessAggregationService processAggregationService) {
-        this.registry = registry;
+    public SpecificCategoryController(AnalyticsUpdateTimer updateTimer, ProcessAggregationService processAggregationService) {
         this.updateTimer = updateTimer;
         this.processAggregationService = processAggregationService;
     }
@@ -111,8 +108,7 @@ public class SpecificCategoryController implements AnalyticsUpdateListener {
     }
 
     private void refreshData() {
-        final List<Process> filtered = this.registry.findAll().values().stream()
-            .filter(process -> process.getProcessCategory() == this.category)
+        final List<Process> filtered = this.processAggregationService.getAggregatedProcessesByCategory(this.category).stream()
             .sorted(Comparator.comparingLong(
                 (Process process) -> this.processAggregationService.getDisplayTotalTimeSeconds(process.getOriginalName()))
                 .reversed())

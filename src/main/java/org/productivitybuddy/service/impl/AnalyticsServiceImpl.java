@@ -18,9 +18,11 @@ import org.productivitybuddy.registry.ProcessRegistry;
 import org.productivitybuddy.service.AnalyticsService;
 import org.productivitybuddy.service.ProcessAggregationService;
 import org.productivitybuddy.thread.ThreadFactory;
+import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
 
 @Component
+@Order(200)
 @Slf4j
 public class AnalyticsServiceImpl implements AnalyticsService {
     private static final int TOP_PROCESS_COUNT = 10;
@@ -54,6 +56,14 @@ public class AnalyticsServiceImpl implements AnalyticsService {
     @Override
     public void stop() {
         this.scheduler.shutdown();
+        try {
+            if (!this.scheduler.awaitTermination(5, TimeUnit.SECONDS)) {
+                log.warn("Analytics scheduler did not terminate within timeout");
+            }
+        } catch (InterruptedException e) {
+            Thread.currentThread().interrupt();
+            log.warn("Interrupted while stopping analytics scheduler", e);
+        }
         log.info("Analytics service stopped");
     }
 

@@ -20,13 +20,14 @@ import org.productivitybuddy.model.ProcessCategory;
 import org.productivitybuddy.registry.ProcessRegistry;
 import org.productivitybuddy.service.FileExecutorService;
 import org.productivitybuddy.thread.ThreadFactory;
+import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
 
 @Component
+@Order(300)
 @Slf4j
 public class SnapshotService implements Lifecycle {
-    private static final DateTimeFormatter FILE_NAME_FORMATTER =
-        DateTimeFormatter.ofPattern("yyyy_MM_dd_HH_mm_ss_SS").withZone(ZoneId.systemDefault());
+    private static final DateTimeFormatter FILE_NAME_FORMATTER = DateTimeFormatter.ofPattern("yyyy_MM_dd_HH_mm_ss_SS").withZone(ZoneId.systemDefault());
     private static final String CSV_HEADER = "timestamp,pid,process_name,cpu_usage,ram_usage,category,alias_name";
 
     private final ProcessRegistry registry;
@@ -54,6 +55,14 @@ public class SnapshotService implements Lifecycle {
     @Override
     public void stop() {
         this.scheduler.shutdown();
+        try {
+            if (!this.scheduler.awaitTermination(5, TimeUnit.SECONDS)) {
+                log.warn("Snapshot scheduler did not terminate within timeout");
+            }
+        } catch (InterruptedException e) {
+            Thread.currentThread().interrupt();
+            log.warn("Interrupted while stopping snapshot scheduler", e);
+        }
         log.info("Snapshot service stopped");
     }
 

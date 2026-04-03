@@ -74,6 +74,7 @@ public class ProcessDetailController implements AnalyticsUpdateListener {
         this.process = process;
         this.mainController = mainController;
 
+        this.updateKillButtonState();
         this.updateFreezeButtonState();
         this.refreshInfo();
         this.updateTimer.addListener(this);
@@ -95,6 +96,18 @@ public class ProcessDetailController implements AnalyticsUpdateListener {
             return;
         }
 
+        if (this.isCurrentApplicationProcess()) {
+            final Alert alert = new Alert(
+                Alert.AlertType.INFORMATION,
+                "Productivity Buddy ne moze da ugasi sopstveni proces.",
+                ButtonType.OK
+            );
+            alert.setTitle("Kill Disabled");
+            alert.setHeaderText("Self-termination is blocked");
+            alert.showAndWait();
+            return;
+        }
+
         final Alert alert = new Alert(Alert.AlertType.CONFIRMATION,
             "Kill process " + this.process.getDisplayName() + " (PID: " + this.process.getProcessInfo().getPid() + ")?",
             ButtonType.YES,
@@ -104,7 +117,22 @@ public class ProcessDetailController implements AnalyticsUpdateListener {
         alert.setTitle("Confirm Kill");
         alert.showAndWait().ifPresent(response -> {
             if (response == ButtonType.YES) {
-                ProcessHandle.of(this.process.getProcessInfo().getPid()).ifPresent(ProcessHandle::destroy);
+                final boolean destroyed = ProcessHandle.of(this.process.getProcessInfo().getPid())
+                    .map(ProcessHandle::destroy)
+                    .orElse(false);
+
+                if (!destroyed) {
+                    final Alert failedAlert = new Alert(
+                        Alert.AlertType.WARNING,
+                        "Proces nije mogao da se ugasi.",
+                        ButtonType.OK
+                    );
+                    failedAlert.setTitle("Kill Failed");
+                    failedAlert.setHeaderText("Unable to terminate process");
+                    failedAlert.showAndWait();
+                    return;
+                }
+
                 this.disposeView();
                 this.mainController.showMainView();
             }
@@ -169,6 +197,7 @@ public class ProcessDetailController implements AnalyticsUpdateListener {
         final ProcessInfo info = this.process.getProcessInfo();
 
         this.nameLabel.setText(this.process.getDisplayName());
+        this.updateKillButtonState();
         this.totalTimeLabel.setText("Total time - " + TimeHelper.toString(
             this.processAggregationService.getDisplayTotalTimeSeconds(this.process.getOriginalName())));
 
@@ -207,5 +236,17 @@ public class ProcessDetailController implements AnalyticsUpdateListener {
     private void updateFreezeButtonState() {
         this.freezeButton.setText(this.process.isTrackingFrozen() ? "Unfreeze Tracking" : "Freeze Tracking");
         this.freezeButton.setGraphic(Icons.freeze(this.process.isTrackingFrozen()));
+    }
+
+    private void updateKillButtonState() {
+        final boolean currentApplicationProcess = this.isCurrentApplicationProcess();
+        this.killButton.setDisable(currentApplicationProcess);
+        this.killButton.setText(currentApplicationProcess ? "Cannot Kill This App" : "Kill Process");
+    }
+
+    private boolean isCurrentApplicationProcess() {
+        return this.process != null
+            && this.process.getProcessInfo() != null
+            && this.process.getProcessInfo().getPid() == ProcessHandle.current().pid();
     }
 }

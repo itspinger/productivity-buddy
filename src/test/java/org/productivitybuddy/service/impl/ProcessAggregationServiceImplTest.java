@@ -89,7 +89,8 @@ class ProcessAggregationServiceImplTest {
         active.setAliasName("My Browser");
         TestHelper.addToRegistry(this.registry, active);
 
-        final Process aggregated = this.aggregationService.getAggregatedProcesses().stream()
+        final Process aggregated = this.aggregationService.getAggregatedProcesses()
+            .stream()
             .filter(p -> "chrome".equals(p.getOriginalName()))
             .findFirst().orElseThrow();
 

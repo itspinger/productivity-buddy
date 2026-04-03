@@ -9,9 +9,11 @@ import javafx.util.Duration;
 import org.productivitybuddy.lifecycle.Lifecycle;
 import org.productivitybuddy.model.AnalyticsSummary;
 import org.productivitybuddy.service.AnalyticsService;
+import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
 
 @Component
+@Order(500)
 public class AnalyticsUpdateTimer implements Lifecycle {
     private final AnalyticsService analyticsService;
     private final List<AnalyticsUpdateListener> listeners = new CopyOnWriteArrayList<>();
@@ -39,6 +41,10 @@ public class AnalyticsUpdateTimer implements Lifecycle {
 
     public void removeListener(AnalyticsUpdateListener listener) {
         this.listeners.remove(listener);
+    }
+
+    public AnalyticsSummary getCurrentSummary() {
+        return this.analyticsService.getLatestSummary();
     }
 
     private void tick() {

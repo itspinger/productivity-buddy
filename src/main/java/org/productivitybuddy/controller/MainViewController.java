@@ -89,6 +89,10 @@ public class MainViewController implements AnalyticsUpdateListener {
 
         this.loadDefaultRightPanel();
         this.showMainView();
+        this.refreshTable();
+        if (this.defaultRightPanelController != null) {
+            this.defaultRightPanelController.update(this.updateTimer.getCurrentSummary());
+        }
         this.updateTimer.addListener(this);
     }
 
